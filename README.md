@@ -21,13 +21,13 @@ Ecco i passaggi da seguire per eseguire l'app in locale:
     ```bash
     git clone [https://github.com/sofialottii/GuessTheBot.git]
     ```
-2.  **Sposta la Repository**
+2.  **Sposta la Repository**<br>
     Il progetto clonato deve essere spostato all'interno di questo percorso: C:\xampp\htdocs.
 
-3.  **Crea il Database**
+3.  **Crea il Database**<br>
     --da scrivere--
 
-4.  **Avvia l'Applicazione**
+4.  **Avvia l'Applicazione**<br>
     Da un browser, andare all'indirizzo `http://localhost/GuessTheBot`.
 
 ## Autore ✍️
