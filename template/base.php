@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title><?php echo $templateParams["titolo"]; ?></title>
-        <link rel="stylesheet" type="text/css" href="../css/style.css?v=46857" />
+        <link rel="stylesheet" type="text/css" href="../assets/css/style.css?v=46857" />
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     
@@ -22,8 +22,13 @@
         </main>
 
         <footer>
-            <p>Sofia Lotti 2025</p>
-            <p>Contattami: sofialotti17@gmail.com</p>
+            <p>Irene Sofia Lotti 2025</p>
+            <p>Progetto di Tesi (Unibo)</p>
+            <ul class="p-0">
+                <li>FAQ</li>
+                <li>Privacy</li>
+                <li>Terms</li>
+            </ul>
         </footer>
 
 
