@@ -13,8 +13,18 @@ html, body {
 
 body {
     padding: 0 !important;
+    min-height: 100%;
+    display: grid;
+    grid-template-rows: auto 1fr auto; /*forzo il footer in fondo*/
 }
 
+
+body > footer {
+    background-color: rgb(54, 54, 54);
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+}
 
 button {
     background-color: #E67E22;
