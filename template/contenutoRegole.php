@@ -15,31 +15,28 @@
                             <li><strong>Osserva l'infografica.</strong></li>
                             <li><strong>Leggi la descrizione</strong>, prestando attenzione allo stile, al tono e alle parole usate.</li>
                             <li><strong>Il testo è stato scritto da un umano o da un'intelligenza artificiale (LLM)?</strong> Seleziona l'opzione che ritieni corretta.</li>
-                            <li><strong>Se vuoi, puoi scrivere nella casella di testo</strong> quali elementi ti hanno portato a quella decisione. È stato un termine strano? Una frase troppo perfetta? O forse una sensazione di "calore" umano?</li>
+                            <li><strong>Se vuoi, puoi scrivere nella casella di testo</strong> quali elementi ti hanno portato a quella decisione. È stato un termine strano? Una frase troppo perfetta? Una sensazione di "calore" umano?</li>
                         </ol>
                     </div>
 
                     <div class="col-lg-5 text-start pt-5 pt-lg-0 ps-lg-5">
                         <h2 class="h4 fw-bold text-uppercase">Il punteggio</h2>
-                        <ul class="text-muted ps-3">
-                            <li>Per ogni risposta <strong>corretta</strong>, guadagni <strong>1 punto</strong>.</li>
-                            <li>Per ogni risposta <strong>sbagliata</strong> o <strong>saltata</strong> (skip), non ricevi <strong>nessun punto</strong>.</li>
-                            <li>Alla fine del gioco, il tuo punteggio totale determinerà la tua posizione nella classifica generale.</li>
-                        </ul>
+                        <p class="text-muted">
+                            Per ogni risposta <strong>corretta</strong>, guadagni <strong>1 punto</strong>.
+                            Per ogni risposta <strong>sbagliata</strong>, non ricevi <strong>nessun punto</strong>.</p>
+                           <p class="text-muted mb-4"> Alla fine del gioco, il tuo punteggio totale determinerà la tua posizione nella classifica generale.
+                        </p>
 
-                        <hr class="my-4">
 
                         <h2 class="h4 fw-bold text-uppercase">Sei Pronto?</h2>
                         <p class="text-muted">Ora che sai tutto, mettiti alla prova e scopri quanto è affinato il tuo intuito!</p>
 
                         <form action="index.php" method="GET" class="mt-3">
-                            <div class="mb-2">
-                                <label for="playerName" class="form-label text-muted">Inserisci il tuo nome</label>
-                                <input type="text" class="form-control" id="playerName" name="playerName" placeholder="Il tuo nome..." required>
-                            </div>
-                            <div class="d-grid">
-                                <button type="submit">Gioca</button>
-                            </div>
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control w-50" id="playerName" name="playerName" placeholder="Il tuo nome" required>
+                                <!--<label for="playerName">Inserisci il tuo nome</label>-->
+                                <button type="submit" class="w-25">Gioca</button>
+                            </div>    
                         </form>
                     </div>
 
