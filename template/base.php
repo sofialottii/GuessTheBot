@@ -33,7 +33,7 @@
                                 <a class="nav-link" href="classifica.php">Classifica</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="come-si-gioca.php">Come si gioca</a>
+                                <a class="nav-link" href="regole.php">Come si gioca</a>
                             </li>
                         </ul>
                     </div>
@@ -53,10 +53,6 @@
                 Progetto di Tesi, Irene Sofia Lotti.
             </p>
         </footer>
-        <!--<footer class="text-center text-muted mt-4">
-            <p>Irene Sofia Lotti 2025</p>
-            <p>Progetto di Tesi (Unibo)</p>
-        </footer>-->
 
 
     </body>
