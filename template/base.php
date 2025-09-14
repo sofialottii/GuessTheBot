@@ -24,16 +24,18 @@
                         <span class="navbar-toggler-icon"></span>
                     </button>
 
+                    <?php $currentPage = basename($_SERVER['PHP_SELF']); ?>
+
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav ms-auto p-0">
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="index.php">Home</a>
+                                <a class="nav-link <?php echo ($currentPage == 'index.php') ? 'active' : ''; ?>" href="index.php">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="classifica.php">Classifica</a>
+                                <a class="nav-link <?php echo ($currentPage == 'classifica.php') ? 'active' : ''; ?>" href="classifica.php">Classifica</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="regole.php">Come si gioca</a>
+                                <a class="nav-link <?php echo ($currentPage == 'regole.php') ? 'active' : ''; ?>" href="regole.php">Come si gioca</a>
                             </li>
                         </ul>
                     </div>
