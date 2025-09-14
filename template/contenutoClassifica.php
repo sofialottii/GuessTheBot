@@ -8,6 +8,11 @@
                         <p class="text-muted">Scopri i migliori giocatori di GuessTheBot!</p>
                     </div>
 
+                    
+                    <?php if(empty($classifica)): ?>
+                        <p class="text-center">Nessun giocatore in classifica. Gioca una partita per essere il primo!</p>
+                    <?php else: ?>
+
                     <div class="table-responsive">
                         <table class="table table-striped table-hover align-middle">
                             <thead class="table-dark">
@@ -18,34 +23,18 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                <?php foreach($classifica as $index => $giocatore): ?>
                                 <tr>
-                                    <td class="text-center fw-bold">1</td>
-                                    <td>Maria Rossi</td>
-                                    <td class="text-center">10</td>
+                                    <td class="text-center fw-bold"><?php echo $index + 1; ?></td>
+                                    <td><?php echo $giocatore['Name']; ?></td>
+                                    <td class="text-center"><?php echo $giocatore['score']; ?></td>
                                 </tr>
-                                <tr>
-                                    <td class="text-center fw-bold">2</td>
-                                    <td>Luigi Verdi</td>
-                                    <td class="text-center">8</td>
-                                </tr>
-                                <tr>
-                                    <td class="text-center fw-bold">3</td>
-                                    <td>Carla Neri</td>
-                                    <td class="text-center">7</td>
-                                </tr>
-                                <tr>
-                                    <td class="text-center fw-bold">4</td>
-                                    <td>Sofia Blu</td>
-                                    <td class="text-center">5</td>
-                                </tr>
-                                <tr>
-                                    <td class="text-center fw-bold">5</td>
-                                    <td>Marco Bianchi</td>
-                                    <td class="text-center">3</td>
-                                </tr>
-                                </tbody>
+                                <?php endforeach; ?>
+                            
+                            </tbody>
                         </table>
                     </div>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>

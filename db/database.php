@@ -50,7 +50,7 @@ class DatabaseHelper{
         $stmt = $this->db->prepare("SELECT u.Name, COUNT(a.IsCorrect) AS score
                                         FROM users u
                                         LEFT JOIN answers a ON u.UserID = a.UserID AND a.IsCorrect = 'y'
-                                        GROUP BY u.AnswerID, u.Name
+                                        GROUP BY u.UserID, u.Name
                                         ORDER BY score DESC
                                         LIMIT 10");
         $stmt->execute();
