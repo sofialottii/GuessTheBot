@@ -4,14 +4,15 @@
             <div class="card shadow-sm border-0">
                 <div class="card-body p-4 p-md-5 row">
 
-                    <h2>Indovina l'autore di questo testo!</h2>
+                    <h2 class="text-center">Indovina l'autore di questo testo!</h2>
 
-            
-                    <img src="../<?php echo $templateParams['infographic']['ImagePath']; ?>" class="img-fluid rounded shadow-sm my-3" alt="Infografica">
-                    
+                    <div class="col-lg-6 offset-lg-3 text-center">
+                        <img src="../<?php echo $templateParams['infographic']['ImagePath']; ?>" class="img-fluid rounded shadow-sm my-3" alt="Infografica">
+                    </div>
+
                     <div class="card my-3">
                         <div class="card-body">
-                            <p class="card-text"><?php echo htmlspecialchars($text_to_show); ?></p>
+                            <p class="card-text"><?php echo $text_to_show; ?></p>
                         </div>
                     </div>
 
