@@ -14,7 +14,7 @@
                             Metti alla prova la tua capacità di distinguere un testo scritto da un'intelligenza artificiale!
                         </p>
 
-                        <form action="php/start_game.php" method="POST">
+                        <form action="gioco.php" method="POST">
                             <div class="form-floating mb-3">
                                 <input type="text" class="form-control" id="playerName" name="playerName" placeholder="Il tuo nome" required>
                                 <label for="playerName">Inserisci il tuo nome</label>

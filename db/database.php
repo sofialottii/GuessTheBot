@@ -15,6 +15,8 @@ class DatabaseHelper{
                                         VALUES (?)");
         $stmt->bind_param("s", $nameUser);
         $stmt->execute();
+
+        return $stmt->insert_id;
     }
     public function deleteUser($nameUser){
         $stmt = $this->db->prepare("DELETE FROM users

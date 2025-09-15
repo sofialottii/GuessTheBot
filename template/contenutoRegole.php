@@ -31,10 +31,9 @@
                         <h2 class="h4 fw-bold text-uppercase">Sei Pronto?</h2>
                         <p class="text-muted">Ora che sai tutto, mettiti alla prova e scopri quanto è affinato il tuo intuito!</p>
 
-                        <form action="index.php" method="GET" class="mt-3">
+                        <form action="gioco.php" method="GET" class="mt-3">
                             <div class="input-group mb-3">
                                 <input type="text" class="form-control w-50" id="playerName" name="playerName" placeholder="Il tuo nome" required>
-                                <!--<label for="playerName">Inserisci il tuo nome</label>-->
                                 <button type="submit" class="w-25">Gioca</button>
                             </div>    
                         </form>
