@@ -32,7 +32,7 @@ class DatabaseHelper{
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
-    public function getRandomInfograhic(){
+    public function getRandomInfographic(){
         $stmt = $this->db->prepare("SELECT * FROM infographics
                                         ORDER BY RAND()
                                         LIMIT 1");
@@ -58,6 +58,17 @@ class DatabaseHelper{
         $stmt->execute();
         $result = $stmt->get_result();
         return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function getUserScore($userID) {
+        $stmt = $this->db->prepare("SELECT COUNT(*) AS score
+                                    FROM answers
+                                    WHERE UserID = ? AND IsCorrect = 'Y'");
+        $stmt->bind_param("i", $userID);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $row = $result->fetch_assoc();
+        return $row['score'];
     }
 
 
