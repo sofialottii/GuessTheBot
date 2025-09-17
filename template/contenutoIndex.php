@@ -1,6 +1,6 @@
 <main class="container">
     <div class="row justify-content-center">
-        <div class="col-12 col-md-6 col-lg">
+        <div class="col-12 col-md-10 col-lg mb-3">
 
             <div class="card shadow-sm border-0">
                 <div class="card-body p-4 p-md-5 text-center row">

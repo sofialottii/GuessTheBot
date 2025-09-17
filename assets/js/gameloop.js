@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function () {
     function handleAnswer(userChoice) {
 
         choiceButtons.forEach(btn => btn.disabled = true); //così non può fare più scelte
-        loading.style.display = 'block';
+        //loading.style.display = 'block';
 
         const datas = new FormData();
         datas.append('infographic_id', document.getElementById('infographic-id').value);
