@@ -4,37 +4,37 @@
             <div class="card shadow-sm border-0">
                 <div class="card-body p-4 p-md-5 row">
 
-                    <div class="col-lg-7 text-start">
-                        <h1 class="h2 fw-bold text-uppercase">Come si gioca</h1>
-                        <p class="text-muted">Lo scopo è testare la tua capacità di distinguere la descrizione di un'immagine di un'intelligenza artificiale e di un umano.</p>
-                        <p class="text-muted mb-4">Pensi di avere l'intuito giusto per scoprire chi si nasconde dietro le parole?</p>
+                    <div class="col-lg-6 text-start">
+                        <h1 class="h2 fw-bold text-uppercase mb-3">COME SI GIOCA</h1>
+                        <p>Lo scopo è testare la tua capacità di distinguere la descrizione di un'immagine di un'intelligenza artificiale e di un umano.</p>
+                        <p class="mb-4">Pensi di riuscire a capire la differenza tra i due?</p>
 
-                        <h2 class="h4 fw-bold text-uppercase">Le regole del gioco</h2>
-                        <p class="text-muted">Il gioco è strutturato in una serie di round. In ogni round, dovrai seguire questi semplici passi:</p>
-                        <ol class="text-muted ps-3">
-                            <li><strong>Osserva l'infografica.</strong></li>
-                            <li><strong>Leggi la descrizione</strong>, prestando attenzione allo stile, al tono e alle parole usate.</li>
-                            <li><strong>Il testo è stato scritto da un umano o da un'intelligenza artificiale (LLM)?</strong> Seleziona l'opzione che ritieni corretta.</li>
-                            <li><strong>Se vuoi, puoi scrivere nella casella di testo</strong> quali elementi ti hanno portato a quella decisione. È stato un termine strano? Una frase troppo perfetta? Una sensazione di "calore" umano?</li>
+                        <h2 class="h4 fw-bold text-uppercase mb-3">LE REGOLE DEL GIOCO</h2>
+                        <p>Il gioco è strutturato in una serie di round. In ogni round, dovrai seguire questi semplici passi:</p>
+                        <ol class="ps-3">
+                            <li><b>Osserva l'infografica.</b></li>
+                            <li><b>Leggi la descrizione,</b> prestando attenzione allo stile e alle parole usate.</li>
+                            <li>Il testo è stato scritto da un umano o da un'intelligenza artificiale (LLM)? <b>Seleziona l'opzione che ritieni corretta.</b></li>
+                            <li>Puoi facoltativamente <b>scrivere per quale motivo hai preso quella decisione.</b> È stato un termine strano? Una frase troppo perfetta? Una sensazione di "calore" umano?</li>
                         </ol>
                     </div>
 
-                    <div class="col-lg-5 text-start pt-5 pt-lg-0 ps-lg-5">
-                        <h2 class="h4 fw-bold text-uppercase">Il punteggio</h2>
-                        <p class="text-muted">
-                            Per ogni risposta <strong>corretta</strong>, guadagni <strong>1 punto</strong>.
-                            Per ogni risposta <strong>sbagliata</strong>, non ricevi <strong>nessun punto</strong>.</p>
-                           <p class="text-muted mb-4"> Alla fine del gioco, il tuo punteggio totale determinerà la tua posizione nella classifica generale.
+                    <div class="col-lg-6 text-start pt-5 pt-lg-0 ps-lg-5">
+                        <h2 class="h4 fw-bold text-uppercase mb-3">Il punteggio</h2>
+                        <p>
+                            Per ogni risposta <b>corretta</b>, guadagni <b>1 punto</b>.
+                            Per ogni risposta <b>sbagliata</b>, non ricevi <b>nessun punto</b>.
                         </p>
+                        <p class="mb-4"> Alla fine del gioco, il tuo punteggio totale determinerà la tua posizione nella classifica generale.</p>
 
 
-                        <h2 class="h4 fw-bold text-uppercase">Sei Pronto?</h2>
-                        <p class="text-muted">Ora che sai tutto, mettiti alla prova e scopri quanto è affinato il tuo intuito!</p>
+                        <h2 class="h4 fw-bold text-uppercase mb-3">Sei Pronto?</h2>
+                        <p>Ora che sai tutto, mettiti alla prova!</p>
 
-                        <form action="gioco.php" method="GET" class="mt-3">
-                            <div class="input-group mb-3">
-                                <input type="text" class="form-control w-50" id="playerName" name="playerName" placeholder="Il tuo nome" required>
-                                <button type="submit" class="w-25">Gioca</button>
+                        <form action="gioco.php" method="POST" class="mt-3 text-center">
+                            <div class="mb-3 d-block">
+                                <input type="text" class="form-control mb-4" id="playerName" name="playerName" placeholder="Il tuo nome" required>
+                                <button type="submit">Gioca</button>
                             </div>    
                         </form>
                     </div>
