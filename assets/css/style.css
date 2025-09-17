@@ -26,6 +26,10 @@ body > footer {
     padding: 20px 0;
 }
 
+body > header a img {
+    width: 5%;
+}
+
 button {
     background-color: #E67E22;
     color: #ffffff;

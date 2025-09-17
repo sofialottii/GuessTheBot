@@ -5,7 +5,7 @@
             <div class="card shadow-sm border-0">
                 <div class="card-body p-4 p-md-5 text-center row">
                     <div class=" col-lg-4">
-                        <img src="../assets/images/logo.jpg" alt="GuessTheBot Logo" class="mb-4 col-12" />
+                        <img src="../assets/images/logo.png" alt="GuessTheBot Logo" class="mb-4 col-12" />
                     </div>
                     <div class="align-items-center col-lg-8">
                         <h1 class="fw-bold my-3 my-lg-5">GUESS THE BOT</h1>
