@@ -24,16 +24,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" & isset($_POST["playerName"])) {
     }
 }
 
-/**
- * Inizio il gioco prelevando una infografica casuale non ancora usata.
- */
+//nuova infografica
 $infographica = $dbh->getRandomInfographic($_SESSION["usedInfographics"]);
 $templateParams["infographic"] = $infographica[0];
 
-/**
- * Scelgo casualmente quale testo mostrare.
- * 0 = umano, 1 = llm
- */
+//testo mostrato -> 0 umano, 1 llm
 if (rand(0, 1) == 0) {
     $text_to_show = $templateParams["infographic"]['HumanText'];
     $text_type_shown = 'human';

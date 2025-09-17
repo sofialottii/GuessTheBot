@@ -5,7 +5,7 @@
                 <h1>GUESS THE BOT</h1>
                 <div class="row">
                     <div class="col-6">
-                        <span class="badge bg-primary fs-6">Round <span id="current-round"><?php echo $_SESSION["currentRound"]; ?></span>/10</span>
+                        <span class="badge bg-primary fs-6">Round <span id="current-round"><?php echo $_SESSION["currentRound"] >= 10 ? "10" : $_SESSION["currentRound"]; ?></span>/10</span>
                     </div>
                     <div class="col-6">
                         <span class="badge bg-success fs-6">Punteggio: <span id="current-score"><?php echo $_SESSION["score"]; ?></span></span>

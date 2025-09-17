@@ -5,13 +5,11 @@ header('Content-Type: application/json');
 session_start();
 
 if (!isset($_SESSION["userID"])) {
-    http_response_code(401);
     echo json_encode(['error' => 'Utente non autenticato']);
     exit;
 }
 
 if (!isset($_POST['infographic_id'], $_POST['text_shown'], $_POST['user_choice'])) {
-    http_response_code(400);
     echo json_encode(['error' => 'Dati mancanti']);
     exit;
 }
@@ -31,7 +29,6 @@ $dbh->addAnswer($infographicId, $userID, $textShown, $userChoice, $isCorrect, nu
 if ($isCorrect === 'Y') {
     $_SESSION["score"]++;
 }
-$_SESSION["currentRound"]++;
 
 //l'infografica usata viene aggiunta alla lista
 if (!in_array($infographicId, $_SESSION["usedInfographics"])) {
@@ -39,6 +36,9 @@ if (!in_array($infographicId, $_SESSION["usedInfographics"])) {
 }
 
 $gameFinished = $_SESSION["currentRound"] >= 10;
+if (!$gameFinished) {
+    $_SESSION["currentRound"]++;
+}
 
 $response = [
     'isCorrect' => $isCorrect === 'Y',

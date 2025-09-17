@@ -1,11 +1,6 @@
-/**
- * gameloop.js
- * Gestisco la logica del gioco
- */
 document.addEventListener('DOMContentLoaded', function () {
 
     const choiceButtons = document.querySelectorAll('.choice-btn');
-    const gameForm = document.getElementById('game-form');
     const resultMessage = document.getElementById('result-message');
     const currentRoundSpan = document.getElementById('current-round');
     const currentScoreSpan = document.getElementById('current-score');
@@ -14,61 +9,48 @@ document.addEventListener('DOMContentLoaded', function () {
         button.addEventListener('click', function () {
             const userChoice = this.getAttribute('data-choice');
             
-            
-            
-            handleAnswer(userChoice);
+            choiceButtons.forEach(btn => btn.disabled = true); //così non può fare più scelte
+            const datas = new FormData();
+            datas.append('infographic_id', document.getElementById('infographic-id').value);
+            datas.append('text_shown', document.getElementById('text-shown').value);
+            datas.append('user_choice', userChoice);
+
+            fetch('../api/submit_answer.php', {
+                method: 'POST',
+                body: datas
+            })
+                .then(response => response.json())
+                .then(data => {
+                    showResult(data);
+
+                    if (data.currentRound) {
+                        currentRoundSpan.textContent = data.currentRound;
+                    }
+                    if (data.score !== undefined) {
+                        currentScoreSpan.textContent = data.score;
+                    }
+
+                    //gioco finito
+                    if (data.gameFinished) {
+                        setTimeout(() => {
+                            showFinalResults(data);
+                        }, 2000);
+                    } else {
+                        //ogni round dura 1 secondo
+                        setTimeout(() => {
+                            loadNextRound();
+                        }, 1000);
+                    }
+                })
+                .catch(error => {
+                    console.error('Errore:', error);
+                    resultMessage.className = 'alert alert-danger';
+                    resultMessage.textContent = 'Errore durante l\'invio della risposta. Riprova.';
+                    resultMessage.style.display = 'block';
+                    choiceButtons.forEach(btn => btn.disabled = false);
+                });
         });
     });
-
-    /**
-     * Gestisce l'invio della risposta dell'utente al server
-     * @param {string} userChoice - La scelta dell'utente ("human" o "llm")
-     *
-     */
-    function handleAnswer(userChoice) {
-
-        choiceButtons.forEach(btn => btn.disabled = true); //così non può fare più scelte
-
-        const datas = new FormData();
-        datas.append('infographic_id', document.getElementById('infographic-id').value);
-        datas.append('text_shown', document.getElementById('text-shown').value);
-        datas.append('user_choice', userChoice);
-
-        fetch('../api/submit_answer.php', {
-            method: 'POST',
-            body: datas
-        })
-            .then(response => response.json())
-            .then(data => {
-                showResult(data);
-
-                if (data.currentRound) {
-                    currentRoundSpan.textContent = data.currentRound;
-                }
-                if (data.score !== undefined) {
-                    currentScoreSpan.textContent = data.score;
-                }
-
-                //gioco finito
-                if (data.gameFinished) {
-                    setTimeout(() => {
-                        showFinalResults(data);
-                    }, 2000);
-                } else {
-                    //ogni round dura 1 secondo
-                    setTimeout(() => {
-                        loadNextRound();
-                    }, 1000);
-                }
-            })
-            .catch(error => {
-                console.error('Errore:', error);
-                resultMessage.className = 'alert alert-danger';
-                resultMessage.textContent = 'Errore durante l\'invio della risposta. Riprova.';
-                resultMessage.style.display = 'block';
-                choiceButtons.forEach(btn => btn.disabled = false);
-            });
-    }
 
     function showResult(data) {
         resultMessage.style.display = 'block';
@@ -93,14 +75,12 @@ document.addEventListener('DOMContentLoaded', function () {
             .then(data => {
                 if (data.success) {
                     
-                    //facciamo gli aggiornamenti
                     document.getElementById('infographic-image').src = '../' + data.infographic.ImagePath;
                     document.getElementById('infographic-text').textContent = data.textToShow;
                     document.getElementById('infographic-id').value = data.infographic.InfographicID;
                     document.getElementById('text-shown').value = data.textTypeShown;
                     resultMessage.style.display = 'none';
 
-                    //riabilitazione pulsanti
                     choiceButtons.forEach(btn => btn.disabled = false);
                 } else {
                     console.error('Errore nel caricamento del round successivo:', data.error);
@@ -144,8 +124,8 @@ document.addEventListener('DOMContentLoaded', function () {
                     ${message}
                 </div>
                 <div class="d-grid gap-2 d-md-flex justify-content-md-center">
-                    <a href="../index.php" class="btn btn-primary btn-lg">Torna alla Home</a>
-                    <a href="../leaderboard.php" class="btn btn-success btn-lg">Classifica</a>
+                    <a href="index.php" class="btn btn-primary btn-lg">Torna alla Home</a>
+                    <a href="classifica.php" class="btn btn-success btn-lg">Classifica</a>
                     <button onclick="location.reload()" class="btn btn-secondary btn-lg">Gioca Ancora</button>
                 </div>
             </div>

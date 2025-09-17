@@ -5,12 +5,11 @@ header('Content-Type: application/json');
 session_start();
 
 if (!isset($_SESSION["userID"])) {
-    http_response_code(401);
     echo json_encode(['error' => 'Utente non autenticato', 'success' => false]);
     exit;
 }
 
-if ($_SESSION["currentRound"] >= 10) {
+if ($_SESSION["currentRound"] > 10) {
     echo json_encode(['error' => 'Gioco terminato', 'success' => false]);
     exit;
 }
