@@ -1,14 +1,14 @@
 <main class="container">
     <div class="row justify-content-center">
-        <div class="col-12 col-md-10 col-lg">
+        <div class="col-12 col-md-11 col-lg mb-4">
             <div class="text-center mb-4">
-                <h1>Guess The Bot</h1>
+                <h1>GUESS THE BOT</h1>
                 <div class="row">
                     <div class="col-6">
                         <span class="badge bg-primary fs-6">Round <span id="current-round"><?php echo $_SESSION["currentRound"]; ?></span>/10</span>
                     </div>
                     <div class="col-6">
-                        <span class="badge bg-success fs-6">Score: <span id="current-score"><?php echo $_SESSION["score"]; ?></span></span>
+                        <span class="badge bg-success fs-6">Punteggio: <span id="current-score"><?php echo $_SESSION["score"]; ?></span></span>
                     </div>
                 </div>
             </div>

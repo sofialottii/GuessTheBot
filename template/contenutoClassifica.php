@@ -1,10 +1,10 @@
 <main class="container">
     <div class="row justify-content-center">
-        <div class="col-12 col-md-10 col-lg mb-3">
+        <div class="col-12 col-md-11 col-lg mb-4">
             <div class="card shadow-sm border-0">
                 <div class="card-body p-4 p-md-5 row">
                     <div class="text-center mb-4">
-                        <h1 class="h2 fw-bold text-uppercase">Classifica</h1>
+                        <h1 class="fw-bold text-uppercase">Classifica</h1>
                         <p class="text-muted">Scopri i migliori giocatori di GuessTheBot!</p>
                     </div>
 
