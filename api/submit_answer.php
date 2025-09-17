@@ -22,7 +22,7 @@ $userChoice = $_POST['user_choice']; //human o llm
 $userID = $_SESSION["userID"];
 
 //controllo se la risposta è corretta
-$isCorrect = ($textTypeShown === $userChoice) ? 'Y' : 'N';
+$isCorrect = ($textShown === $userChoice) ? 'Y' : 'N';
 
 //risposta salvata nel db
 $dbh->addAnswer($infographicId, $userID, $textShown, $userChoice, $isCorrect, null);

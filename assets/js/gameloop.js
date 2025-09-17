@@ -7,7 +7,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const choiceButtons = document.querySelectorAll('.choice-btn');
     const gameForm = document.getElementById('game-form');
     const resultMessage = document.getElementById('result-message');
-    const loading = document.getElementById('loading');
     const currentRoundSpan = document.getElementById('current-round');
     const currentScoreSpan = document.getElementById('current-score');
 
@@ -29,7 +28,6 @@ document.addEventListener('DOMContentLoaded', function () {
     function handleAnswer(userChoice) {
 
         choiceButtons.forEach(btn => btn.disabled = true); //così non può fare più scelte
-        //loading.style.display = 'block';
 
         const datas = new FormData();
         datas.append('infographic_id', document.getElementById('infographic-id').value);
@@ -42,7 +40,6 @@ document.addEventListener('DOMContentLoaded', function () {
         })
             .then(response => response.json())
             .then(data => {
-                loading.style.display = 'none';
                 showResult(data);
 
                 if (data.currentRound) {
@@ -65,7 +62,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             })
             .catch(error => {
-                loading.style.display = 'none';
                 console.error('Errore:', error);
                 resultMessage.className = 'alert alert-danger';
                 resultMessage.textContent = 'Errore durante l\'invio della risposta. Riprova.';
