@@ -32,14 +32,34 @@ class DatabaseHelper{
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
-    public function getRandomInfographic(){
+    public function getRandomInfographic($excludeIds = []) {
+    $sql = "SELECT * FROM infographics";
+    if (!empty($excludeIds)) {
+        $placeholders = str_repeat('?,', count($excludeIds) - 1) . '?';
+        $sql .= " WHERE InfographicID NOT IN ($placeholders)";
+    }
+    $sql .= " ORDER BY RAND() LIMIT 1";
+    
+    $stmt = $this->db->prepare($sql);
+    
+    if (!empty($excludeIds)) {
+        $types = str_repeat('i', count($excludeIds));
+        $stmt->bind_param($types, ...$excludeIds);
+    }
+    
+    $stmt->execute();
+    $result = $stmt->get_result();
+    return $result->fetch_all(MYSQLI_ASSOC);
+}
+
+    /*public function getRandomInfographic(){
         $stmt = $this->db->prepare("SELECT * FROM infographics
                                         ORDER BY RAND()
                                         LIMIT 1");
         $stmt->execute();
         $result = $stmt->get_result();
         return $result->fetch_all(MYSQLI_ASSOC);
-    }
+    }*/
 
     public function addAnswer($idInfographic, $idUser, $textShown, $userChoice, $isCorrect, $motivation){
         $stmt = $this->db->prepare("INSERT INTO answers (InfographicID, UserID, TextShown, UserChoice, IsCorrect, Motivation)

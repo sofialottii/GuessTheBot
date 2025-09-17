@@ -4,24 +4,36 @@ require_once("bootstrap.php");
 
 session_start();
 
+/**
+ * Controllo l'inserimento del nome del giocatore, se non è settato lo rimando alla home.
+ * Inizializzo le variabili di sessione per il gioco.
+ * Le infografiche già usate vengono salvate in una variabile di sessione per non ripeterle.
+ */
 if ($_SERVER["REQUEST_METHOD"] == "POST" & isset($_POST["playerName"])) {
-    $dbh->addUser($_POST["playerName"]);
+    $userID = $dbh->addUser($_POST["playerName"]);
 
     $_SESSION["playerName"] = $_POST["playerName"];
-    $_SESSION["userID"] = null;//da aggiungere
+    $_SESSION["userID"] = $userID;
+    $_SESSION["currentRound"] = 1;
+    $_SESSION["score"] = 0;
+    $_SESSION["usedInfographics"] = []; 
 
-    if (!isset($_SESSION["playerName"])){ //da cambiare con userID
+    if (!isset($_SESSION["userID"])){
         header("Location: index.php");
         exit();
     }
-} else {
-    header("Location: index.php");
-    exit();
 }
 
-$infographica = $dbh->getRandomInfograhic();
+/**
+ * Inizio il gioco prelevando una infografica casuale non ancora usata.
+ */
+$infographica = $dbh->getRandomInfographic($_SESSION["usedInfographics"]);
 $templateParams["infographic"] = $infographica[0];
 
+/**
+ * Scelgo casualmente quale testo mostrare.
+ * 0 = umano, 1 = llm
+ */
 if (rand(0, 1) == 0) {
     $text_to_show = $templateParams["infographic"]['HumanText'];
     $text_type_shown = 'human';
@@ -30,6 +42,8 @@ if (rand(0, 1) == 0) {
     $text_type_shown = 'llm';
 }
 
+$templateParams["text_to_show"] = $text_to_show;
+$templateParams["text_type_shown"] = $text_type_shown;
 $templateParams["titolo"] = "Guess The Bot";
 $templateParams["nome"] = "contenutoGioco.php";
 
