@@ -10,6 +10,8 @@
                     <div class="align-items-center col-lg-8">
                         <h1 class="fw-bold my-3 my-lg-5">GUESS THE BOT</h1>
 
+                        <?php if (!isset($_SESSION["Admin"])): ?>
+
                         <p class="text-muted my-4 my-lg-5">
                             Metti alla prova la tua capacità di distinguere un testo scritto da un'intelligenza artificiale!
                         </p>
@@ -24,6 +26,25 @@
                                 <button class="my-3" type="submit">Gioca</button>
                             </div>
                         </form>
+
+                        <?php else: ?>
+
+                        <p class="text-muted my-4 my-lg-5">
+                            Benvenuto, <?php echo $_SESSION["Admin"]; ?>! Puoi gestire il sito dall'area riservata.
+                        </p>
+                        <ul class="p-0 list-unstyled">
+                            <li class="mb-3">
+                                <a href="admin_infographics.php" class="bottone my-3">Gestisci Infografiche</a>
+                            </li>
+                            <li class="mb-3">
+                                <a href="admin_answers.php" class="bottone my-3">Visualizza Risposte</a>
+                            </li>
+                            <li class="mb-3">
+                                <a href="admin_users.php" class="bottone my-3">Gestisci Utenti</a>
+                            </li>
+                        <a href="login.php" class="bottone my-3">Logout</a>
+                            
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>

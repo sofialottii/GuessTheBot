@@ -1,21 +1,21 @@
 <main class="container">
     <div class="row justify-content-center">
-        <div class="col-12 col-md-11 col-lg mb-4">
+        <div class="col-12 col-md-11 col-lg-10 mb-4">
             <div class="card shadow-sm border-0">
-                <div class="card-body p-4 p-md-5 text-center row">
+                <div class="card-body p-4 p-md-5 text-center row justify-content-center">
 
-                    <h1>AREA RISERVATA</h1>
+                    <h1 class="mb-4">AREA RISERVATA</h1>
                     <?php if(isset($templateParams["errorelogin"])): ?>
                     <p class="text-danger"><?php echo $templateParams["errorelogin"]; ?></p>
                     <?php endif; ?>
    
-                    <form action="#" method="POST">
+                    <form action="#" method="POST" class="col-8" >
                         <ul class="p-0 form list-unstyled">
                             <li>
                                 <label for="username" class="form-label">Username</label>
                                 <input type="text" id="username" name="username" class="form-control" autocomplete="on" />
                             </li>
-                            <li class="mb-3">
+                            <li class="mb-4">
                                 <label for="password" class="form-label">Password</label>
                                 <input type="password" id="password" name="password" class="form-control" autocomplete="off" />
                             </li>

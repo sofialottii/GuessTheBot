@@ -42,10 +42,26 @@ button, li input[type="submit"] {
     transition: background-color 0.2s ease-in-out, transform 0.1s ease;
 }
 
-button:hover, li input[type="submit"]:hover {
+button:hover, li input[type="submit"]:hover, .bottone:hover {
     background-color: #d35400;
 }
 
-button:active, li input[type="submit"]:active {
+button:active, li input[type="submit"]:active, .bottone:active {
     transform: scale(0.98);
+}
+
+.bottone {
+    display: block;
+    width: 50%;
+    margin: 20px auto;
+    text-decoration: none;
+    background-color: #E67E22;
+    color: #ffffff;
+    padding: 5px 15px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px !important;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out, transform 0.1s ease;
 }
