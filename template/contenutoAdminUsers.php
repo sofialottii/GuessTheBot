@@ -5,6 +5,9 @@
                 <div class="card-body p-4 p-md-5 text-center row">
 
                     <h1>GESTISCI UTENTI</h1>
+                    <?php if (empty($templateParams["users"])): ?>
+                        <p class="alert alert-warning">Nessun utente registrato.</p>
+                    <?php else: ?>
                     <div class="table-responsive">
                         <table class="table table-striped">
                             <thead>
@@ -31,7 +34,8 @@
                     
                         </table>
                     </div>
-                    <a href="index.php">Torna alla home</a>
+                    <?php endif; ?>
+                    <a href="index.php" class="text-start">Torna alla home</a>
                 </div>
             </div>
         </div>

@@ -37,6 +37,7 @@ CREATE TABLE ANSWERS(
     UserChoice ENUM('human', 'llm') NOT NULL,
     IsCorrect CHAR(1) DEFAULT 'N',
     Motivation TEXT NULL,
+    Advice TEXT NULL,
     AnsweredAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 
     FOREIGN KEY (InfographicID) REFERENCES INFOGRAPHICS(InfographicID),
