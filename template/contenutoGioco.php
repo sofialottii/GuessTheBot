@@ -14,44 +14,49 @@
     <div class="card shadow-sm border-0">
         <div class="card-body p-4 p-md-5 row">
 
-            <h2 class="text-center">Indovina l'autore di questo testo!</h2>
-
-            <div class="col-lg-6 offset-lg-3 text-center">
-                <img id="infographic-image" src="../<?php echo $templateParams['infographic']['ImagePath']; ?>" class="img-fluid rounded shadow-sm my-3" alt="Infografica" />
+            <div class="col-12 col-lg-4 d-flex align-items-center justify-content-center mb-lg-0 mb-3">
+                <img id="infographic-image" src="../<?php echo $templateParams['infographic']['ImagePath']; ?>" class="img-fluid rounded shadow-sm" alt="Infografica" />
             </div>
 
-            <div class="card my-3">
-                <div class="card-body">
-                    <p id="infographic-text" class="card-text"><?php echo $text_to_show; ?></p>
-                </div>
+            <div class="col-12 col-lg-8 text-start">
+
+            <h2 class="text-center mb-4">Chi è l'autore di questo testo?</h2>
+                
+                <p id="infographic-text" class="descrizione"><?php echo $text_to_show; ?></p>
+                
+                <form id="game-form" method="POST" class="mt-4">
+                    <label for="infographic-id" class="d-none">ID Infografica</label>
+                    <input type="hidden" id="infographic-id" name="infographic_id" value="<?php echo $templateParams['infographic']['InfographicID']; ?>">
+                    <label for="text-shown" class="d-none">Tipo di testo mostrato</label>
+                    <input type="hidden" id="text-shown" name="text_shown" value="<?php echo $text_type_shown; ?>">
+                
+                    <p class="text-center">Chi ha scritto questo testo?</p>
+
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-center mb-4">
+                        <label for="human" class="d-none">Umano</label>
+                        <button type="button" id="human" data-choice="human" class="choice-btn">Umano</button>
+                        <label for="llm" class="d-none">Intelligenza Artificiale</label>
+                        <button type="button" id="llm" data-choice="llm" class="choice-btn">AI</button>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3 mb-md-0">
+                            <label for="explanation" class="form-label small text-muted">Facoltativo: spiega la tua scelta.</label>
+                            <textarea id="explanation" name="explanation" class="form-control" rows="3" placeholder="Scrivi qui..."></textarea>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="consigli" class="form-label small text-muted">Hai consigli per migliorare il gioco?</label>
+                            <textarea id="consigli" name="consigli" class="form-control" rows="3" placeholder="Scrivi qui..."></textarea>
+                        </div>
+                    </div>
+
+                </form>
+
             </div>
 
             <div id="result-message" class="alert" style="display: none;"></div>
 
-            <form id="game-form" method="POST" >
-                <label for="infographic-id" class="d-none">ID Infografica</label>
-                <input type="hidden" id="infographic-id" name="infographic_id" value="<?php echo $templateParams['infographic']['InfographicID']; ?>">
-                <label for="text-shown" class="d-none">Tipo di testo mostrato</label>
-                <input type="hidden" id="text-shown" name="text_shown" value="<?php echo $text_type_shown; ?>">
-                
-                <p>Chi ha scritto questo testo?</p>
-                <div class="d-grid gap-2 d-md-flex justify-content-md-center">
-                    <label for="human" class="d-none">Umano</label>
-                    <button type="button" id="human" name="user_choice" data-choice="human" value="human" class="choice-btn btn btn-success btn-lg">Umano</button>
-                    <label for="llm" class="d-none">Intelligenza Artificiale</label>
-                    <button type="button" id="llm" name="user_choice" data-choice="llm" value="llm" class="choice-btn btn btn-info btn-lg">Intelligenza Artificiale</button>
-                </div>
-                <div class="row justify-content-center mt-4">
-                    <div class="col-12 col-lg-6 mb-4">
-                        <label for="explanation" class="form-label">Facoltativo: spiega la tua scelta.</label>
-                        <textarea id="explanation" name="explanation" class="form-control mt-3" rows="3" placeholder="Scrivi qui..."></textarea>
-                    </div>
-                    <div class="col-12 col-lg-6 mb-4">
-                        <label for="consigli" class="form-label">Facoltativo: hai consigli per migliorare il gioco?</label>
-                        <textarea id="consigli" name="consigli" class="form-control mt-3" rows="3" placeholder="Scrivi qui..."></textarea>
-                    </div>
-                </div>
-            </form>
+            
         </div>
     </div>
 </div>

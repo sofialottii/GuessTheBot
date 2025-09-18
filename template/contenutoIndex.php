@@ -1,11 +1,20 @@
-<div class="col-12 col-md-11 col-lg mb-4 card shadow-sm border-0">
+<div class="col-10 col-md-11 col-lg mb-4 card shadow-sm border-0">
     <div class="card-body p-4 p-md-5 text-center row">
             
-        <div class=" col-lg-4">
-            <img src="../assets/images/logo.png" alt="GuessTheBot Logo" class="mb-4 col-12" />
+        <div class="col-lg-4 flip-container">
+            <div class="flipper">
+                <div class="front">
+                    <img src="../assets/images/logo.png" alt="GuessTheBot Logo" class="mb-4 col-12" />
+                </div>
+                <div class="back">
+                    <img src="../assets/images/logo_umano.png" alt="GuessTheBot Logo" class="mb-4 col-12" />
+                </div>
+            </div>
         </div>
+
+
         <div class="align-items-center col-lg-8">
-            <h1 class="fw-bold my-3 my-lg-5">GUESS THE BOT</h1>
+            <h1 class="fw-bold my-3 my-lg-5 display-4">GUESS THE BOT</h1>
 
             <?php if (!isset($_SESSION["Admin"])): ?>
 
