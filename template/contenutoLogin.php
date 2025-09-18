@@ -1,4 +1,4 @@
-<div class="col-12 col-md-11 col-lg-10 mb-4 card shadow-sm border-0">
+<div class="col-10 col-md-11 col-lg-10 mb-4 card shadow-sm border-0">
     <div class="card-body p-4 p-md-5 text-center row justify-content-center">
 
         <h1 class="mb-4">AREA RISERVATA</h1>

@@ -1,4 +1,4 @@
-<div class="col-12 col-md-11 col-lg mb-4">
+<div class="col-10 col-md-11 col-lg mb-4">
     <div class="text-center mb-4">
         <h1>GUESS THE BOT</h1>
         <div class="row">
