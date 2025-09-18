@@ -108,6 +108,40 @@ class DatabaseHelper{
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
+    public function getAllAnswers(){
+        $stmt = $this->db->prepare("SELECT * FROM answers WHERE Motivation IS NOT NULL AND Motivation <> ''");
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function getAllAdvices(){
+        $stmt = $this->db->prepare("SELECT * FROM answers WHERE Advice IS NOT NULL AND Advice <> ''");
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function getAllInfographics(){
+        $stmt = $this->db->prepare("SELECT * FROM infographics");
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function deleteInfographic($idInfographic){
+        $stmt = $this->db->prepare("DELETE FROM infographics WHERE InfographicID = ?");
+        $stmt->bind_param("i", $idInfographic);
+        $stmt->execute();
+    }
+
+    public function addInfographic($title, $imagePath, $humanText, $llmText){
+        $stmt = $this->db->prepare("INSERT INTO infographics (Title, ImagePath, HumanText, LlmText)
+                                        VALUES (?, ?, ?, ?)");
+        $stmt->bind_param("ssss", $title, $imagePath, $humanText, $llmText);
+        $stmt->execute();
+    }
+
 
 
 
