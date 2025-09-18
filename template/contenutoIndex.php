@@ -34,13 +34,13 @@
                         </p>
                         <ul class="p-0 list-unstyled">
                             <li class="mb-3">
-                                <a href="admin_infographics.php" class="bottone my-3">Gestisci Infografiche</a>
+                                <a href="adminInfographics.php" class="bottone my-3">Gestisci Infografiche</a>
                             </li>
                             <li class="mb-3">
-                                <a href="admin_answers.php" class="bottone my-3">Visualizza Risposte</a>
+                                <a href="adminAnswers.php" class="bottone my-3">Visualizza Risposte</a>
                             </li>
                             <li class="mb-3">
-                                <a href="admin_users.php" class="bottone my-3">Gestisci Utenti</a>
+                                <a href="adminUsers.php" class="bottone my-3">Gestisci Utenti</a>
                             </li>
                         <a href="login.php" class="bottone my-3">Logout</a>
                             

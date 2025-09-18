@@ -18,12 +18,6 @@ class DatabaseHelper{
 
         return $stmt->insert_id;
     }
-    public function deleteUser($nameUser){
-        $stmt = $this->db->prepare("DELETE FROM users
-                                        WHERE Name = ?");
-        $stmt->bind_param("s", $nameUser);
-        $stmt->execute();
-    }
 
     public function getUsers(){
         $stmt = $this->db->prepare("SELECT * FROM users");
@@ -60,7 +54,7 @@ class DatabaseHelper{
     }
 
     public function getLeaderboard(){
-        $stmt = $this->db->prepare("SELECT u.Name, COUNT(a.IsCorrect) AS score
+        $stmt = $this->db->prepare("SELECT u.Name, u.UserID, COUNT(a.IsCorrect) AS score
                                         FROM users u
                                         LEFT JOIN answers a ON u.UserID = a.UserID AND a.IsCorrect = 'y'
                                         GROUP BY u.UserID, u.Name
@@ -92,6 +86,30 @@ class DatabaseHelper{
         $result = $stmt->get_result();
         return $result->fetch_all(MYSQLI_ASSOC);
     }
+
+    public function deleteUser($idUser){
+        $stmt = $this->db->prepare("DELETE FROM answers WHERE UserID = ?");
+        $stmt->bind_param("i", $idUser);
+        $stmt->execute();
+        $stmt = $this->db->prepare("DELETE FROM users
+                                        WHERE UserID = ?");
+        $stmt->bind_param("i", $idUser);
+        $stmt->execute();
+    }
+
+    public function getAllUsersWithScores(){
+        $stmt = $this->db->prepare("SELECT u.UserID, u.Name, COUNT(a.IsCorrect) AS score
+                                        FROM users u
+                                        LEFT JOIN answers a ON u.UserID = a.UserID AND a.IsCorrect = 'y'
+                                        GROUP BY u.UserID, u.Name
+                                        ORDER BY score DESC");
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+
+
 
     /* per quanto farò la password hashata 
     public function checkLogin($username, $password){
