@@ -5,7 +5,6 @@
         <form method="POST" action="#">
             <ul class="p-0 form list-unstyled">
                 <li class="mb-3">
-                    <p class="mb-1"><strong>Immagine Attuale:</strong></p>
                     <img src="../<?php echo $templateParams["infografica"]["ImagePath"]; ?>" alt="Immagine attuale" class="img-fluid rounded">
                 </li>
                 <li class="mb-3">
@@ -26,8 +25,8 @@
                 <textarea id="llmText" name="llmText" class="form-control" rows="4" required><?php echo $templateParams["infografica"]["LlmText"]; ?></textarea>
                 </li>
                 <li class="d-grid gap-2 d-md-flex justify-content-md-end mt-3">
-                    <a href="adminInfographics.php" class="btn btn-secondary">Annulla</a>
-                    <input type="submit" name="modifica" value="Salva Modifiche" class="btn btn-primary" />
+                    <a href="adminInfographics.php" class="mt-2 mx-2">Annulla</a>
+                    <input type="submit" name="modifica" value="Salva Modifiche" />
                 </li>
             </ul>
         </form>

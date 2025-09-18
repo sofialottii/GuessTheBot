@@ -1,7 +1,7 @@
 <div class="col-10 col-md-11 col-lg mb-4 card shadow-sm border-0">
     <div class="card-body p-4 p-md-5 text-center row">
 
-        <h1>GESTISCI UTENTI</h1>
+        <h1 class="fw-bold display-5">GESTIONE UTENTI</h1>
         <?php if (empty($templateParams["users"])): ?>
             <p class="alert alert-warning">Nessun utente registrato.</p>
         <?php else: ?>

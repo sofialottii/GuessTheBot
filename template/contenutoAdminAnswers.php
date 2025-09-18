@@ -1,6 +1,8 @@
 <div class="col-10 col-md-11 col-lg mb-4 card shadow-sm border-0">
     <div class="card-body p-4 p-md-5 text-center row justify-content-center">
 
+        <h1 class="mb-4 display-6 fw-bold">VISUALIZZAZIONE RISPOSTE E CONSIGLI</h1>
+
         <button id="showAnswersBtn" class="btn btn-primary m-2 col-lg-5">Mostra tutte le risposte</button>
         <button id="showAdvicesBtn" class="btn btn-secondary m-2 col-lg-5">Mostra tutti i consigli</button>
 

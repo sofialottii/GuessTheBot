@@ -1,6 +1,6 @@
 <div class="col-10 col-md-11 col-lg mb-4 card shadow-sm border-0">
     <div class="card-body p-4 p-md-5 text-center row">
-        <h1 class="mb-4">GESTISCI INFOGRAFICHE</h1>
+        <h1 class="mb-4 display-5 fw-bold">GESTIONE INFOGRAFICHE</h1>
 
         <div class="container">
             <div class="row g-4">

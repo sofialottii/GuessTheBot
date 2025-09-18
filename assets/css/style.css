@@ -30,6 +30,10 @@ body > header a img {
     width: 5%;
 }
 
+a[href="aggiungiInfografica.php"] {
+    text-decoration: none;
+}
+
 .logo-navbar {
     height: 40px;
     width: auto;
