@@ -142,6 +142,14 @@ class DatabaseHelper{
         $stmt->execute();
     }
 
+    public function updateInfographic($idInfographic, $title, $imagePath, $humanText, $llmText){
+        $stmt = $this->db->prepare("UPDATE infographics 
+                                        SET Title = ?, ImagePath = ?, HumanText = ?, LlmText = ?
+                                        WHERE InfographicID = ?");
+        $stmt->bind_param("ssssi", $title, $imagePath, $humanText, $llmText, $idInfographic);
+        $stmt->execute();
+    }
+
 
 
 

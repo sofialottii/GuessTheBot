@@ -65,3 +65,51 @@ button:active, li input[type="submit"]:active, .bottone:active {
     cursor: pointer;
     transition: background-color 0.2s ease-in-out, transform 0.1s ease;
 }
+
+.temporaneo {
+    border: 2px solid rgba(0, 0, 0, 0.625);
+    border-radius: 5px;
+    padding: 20px 5% !important;
+    background-color: white;
+}
+
+@media (min-width: 768px) {
+    .temporaneo {
+        padding: 20px 3% !important;
+    }
+}
+
+.click:hover {
+    background-color: lightgray;
+    transform: scale(1.05);
+    transition: all 0.4s;
+}
+
+.click:active {
+    background-color: gray;
+    transform: scale(0.95);
+    transition: all 0.4s;
+}
+
+.click {
+    transition: transform 0.4s ease-in-out;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 1rem;
+}
+
+.cliccabile section {
+    display: flex;
+    justify-content: center;
+    height: 200px;
+    /* Imposta un'altezza fissa per la sezione immagine */
+    overflow: hidden;
+    /* Evita problemi con immagini più grandi */
+}
+
+.cliccabile img {
+    height: 100%;
+    object-fit: cover;
+    /* Ritaglia l'immagine per riempire la sezione */
+    border-radius: 5px;
+}
