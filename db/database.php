@@ -150,7 +150,13 @@ class DatabaseHelper{
         $stmt->execute();
     }
 
-
+    public function getInfographicById($idInfographic){
+        $stmt = $this->db->prepare("SELECT * FROM infographics WHERE InfographicID = ?");
+        $stmt->bind_param("i", $idInfographic);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_assoc();
+}
 
 
     /* per quanto farò la password hashata 
