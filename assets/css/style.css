@@ -30,7 +30,7 @@ body > header a img {
     width: 5%;
 }
 
-button {
+button, li input[type="submit"] {
     background-color: #E67E22;
     color: #ffffff;
     padding: 12px 20px;
@@ -42,10 +42,10 @@ button {
     transition: background-color 0.2s ease-in-out, transform 0.1s ease;
 }
 
-button:hover {
+button:hover, li input[type="submit"]:hover {
     background-color: #d35400;
 }
 
-button:active {
+button:active, li input[type="submit"]:active {
     transform: scale(0.98);
 }
