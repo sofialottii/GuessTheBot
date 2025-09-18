@@ -46,10 +46,10 @@ class DatabaseHelper{
     return $result->fetch_all(MYSQLI_ASSOC);
 }
 
-    public function addAnswer($idInfographic, $idUser, $textShown, $userChoice, $isCorrect, $motivation){
-        $stmt = $this->db->prepare("INSERT INTO answers (InfographicID, UserID, TextShown, UserChoice, IsCorrect, Motivation)
-                                        VALUES (?, ?, ?, ?, ?, ?)");
-        $stmt->bind_param("iissss",$idInfographic, $idUser, $textShown, $userChoice, $isCorrect, $motivation);
+    public function addAnswer($idInfographic, $idUser, $textShown, $userChoice, $isCorrect, $motivation, $advice){
+        $stmt = $this->db->prepare("INSERT INTO answers (InfographicID, UserID, TextShown, UserChoice, IsCorrect, Motivation, Advice)
+                                        VALUES (?, ?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("iisssss",$idInfographic, $idUser, $textShown, $userChoice, $isCorrect, $motivation, $advice);
         $stmt->execute();
     }
 
@@ -109,14 +109,20 @@ class DatabaseHelper{
     }
 
     public function getAllAnswers(){
-        $stmt = $this->db->prepare("SELECT * FROM answers WHERE Motivation IS NOT NULL AND Motivation <> ''");
+        $stmt = $this->db->prepare("SELECT a.*, i.ImagePath 
+                                    FROM answers a
+                                    LEFT JOIN infographics i ON a.InfographicID = i.InfographicID
+                                    WHERE a.Motivation IS NOT NULL AND a.Motivation <> ''");
         $stmt->execute();
         $result = $stmt->get_result();
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
     public function getAllAdvices(){
-        $stmt = $this->db->prepare("SELECT * FROM answers WHERE Advice IS NOT NULL AND Advice <> ''");
+        $stmt = $this->db->prepare("SELECT a.*, i.ImagePath 
+                        FROM answers a
+                        LEFT JOIN infographics i ON a.InfographicID = i.InfographicID
+                        WHERE a.Advice IS NOT NULL AND a.Advice <> ''");
         $stmt->execute();
         $result = $stmt->get_result();
         return $result->fetch_all(MYSQLI_ASSOC);

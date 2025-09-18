@@ -7,26 +7,28 @@
         <button id="showAdvicesBtn" class="btn btn-secondary m-2 col-lg-5">Mostra tutti i consigli</button>
 
         <div id="answersSection" class="mt-4" style="display:none;">
-            <?php if (empty($templateParmas["answers"])) {
-                    echo '<p class="alert alert-warning">Nessuna risposta registrata.</p>';
-                } else {
-                    foreach ($templateParmas["answers"] as $answer) {
-                        echo '<div class="alert alert-info mb-2">' . $answer . '</div>';
-                    }
-                } 
-            ?>
+            <?php if (empty($templateParams["answers"])): ?> 
+                <p class="alert alert-warning">Nessuna risposta registrata.</p>
+            <?php else: ?>
+                <?php foreach ($templateParams["answers"] as $answer): ?>
+                        <div class="alert alert-info mb-2 d-flex align-items-center">
+                            <img src="../<?php echo $answer["ImagePath"]; ?>" alt="Immagine risposta" class="me-3 rounded" style="width:60px; height:60px; object-fit:cover;">
+                            <div>User choice: <strong><?php echo $answer["UserChoice"]; ?> </strong> -> <?php echo $answer["Motivation"]; ?> </div>
+                        </div>
+                    
+                <?php endforeach; endif; ?>
         </div>
 
         <div id="advicesSection" class="mt-4" style="display:none;">
-            <?php if (empty($templateParams["advices"])) {
-                    echo '<p class="alert alert-warning">Nessun consiglio registrato.</p>';
-                } else {
-                    foreach ($templateParams["adivces"] as $advice) {
-                        echo '<div class="alert alert-warning mb-2">' . $advice . '</div>';
-                    }
-                }
-            
-            ?>
+            <?php if (empty($templateParams["advices"])): ?> 
+                <p class="alert alert-warning">Nessun consiglio registrato.</p>
+            <?php else: ?>
+                <?php foreach ($templateParams["adivces"] as $advice): ?>
+                    <div class="alert alert-info mb-2 d-flex align-items-center">
+                        <img src="../<?php echo $answer["ImagePath"]; ?>" alt="Immagine risposta" class="me-3 rounded" style="width:60px; height:60px; object-fit:cover;">
+                        <div>Consiglio: <?php echo $answer["Motivation"]; ?> </div>
+                    </div>
+            <?php endforeach; endif; ?>
         </div>
 
         <script>

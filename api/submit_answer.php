@@ -25,7 +25,7 @@ $advice = isset($_POST['consigli']) ? $_POST['consigli'] : null;
 $isCorrect = ($textShown === $userChoice) ? 'Y' : 'N';
 
 //risposta salvata nel db
-$dbh->addAnswer($infographicId, $userID, $textShown, $userChoice, $isCorrect, $explanation);
+$dbh->addAnswer($infographicId, $userID, $textShown, $userChoice, $isCorrect, $explanation, $advice);
 
 //aggiornato punteggio e round nella sessione
 if ($isCorrect === 'Y') {
