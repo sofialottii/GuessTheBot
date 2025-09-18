@@ -4,6 +4,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const resultMessage = document.getElementById('result-message');
     const currentRoundSpan = document.getElementById('current-round');
     const currentScoreSpan = document.getElementById('current-score');
+    const explanation = document.getElementById('explanation');
+    const advice = document.getElementById('consigli');
 
     choiceButtons.forEach(button => {
         button.addEventListener('click', function () {
@@ -14,6 +16,8 @@ document.addEventListener('DOMContentLoaded', function () {
             datas.append('infographic_id', document.getElementById('infographic-id').value);
             datas.append('text_shown', document.getElementById('text-shown').value);
             datas.append('user_choice', userChoice);
+            datas.append('explanation', document.getElementById('explanation').value);
+            datas.append('advice', document.getElementById('consigli').value);
 
             fetch('../api/submit_answer.php', {
                 method: 'POST',

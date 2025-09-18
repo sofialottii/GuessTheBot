@@ -18,12 +18,14 @@ $infographicId = (int)$_POST['infographic_id'];
 $textShown = $_POST['text_shown']; //human o llm
 $userChoice = $_POST['user_choice']; //human o llm
 $userID = $_SESSION["userID"];
+$explanation = isset($_POST['explanation']) ? $_POST['explanation'] : null;
+$advice = isset($_POST['consigli']) ? $_POST['consigli'] : null;
 
 //controllo se la risposta è corretta
 $isCorrect = ($textShown === $userChoice) ? 'Y' : 'N';
 
 //risposta salvata nel db
-$dbh->addAnswer($infographicId, $userID, $textShown, $userChoice, $isCorrect, null);
+$dbh->addAnswer($infographicId, $userID, $textShown, $userChoice, $isCorrect, $explanation);
 
 //aggiornato punteggio e round nella sessione
 if ($isCorrect === 'Y') {

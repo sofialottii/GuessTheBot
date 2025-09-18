@@ -52,15 +52,6 @@ class DatabaseHelper{
     return $result->fetch_all(MYSQLI_ASSOC);
 }
 
-    /*public function getRandomInfographic(){
-        $stmt = $this->db->prepare("SELECT * FROM infographics
-                                        ORDER BY RAND()
-                                        LIMIT 1");
-        $stmt->execute();
-        $result = $stmt->get_result();
-        return $result->fetch_all(MYSQLI_ASSOC);
-    }*/
-
     public function addAnswer($idInfographic, $idUser, $textShown, $userChoice, $isCorrect, $motivation){
         $stmt = $this->db->prepare("INSERT INTO answers (InfographicID, UserID, TextShown, UserChoice, IsCorrect, Motivation)
                                         VALUES (?, ?, ?, ?, ?, ?)");

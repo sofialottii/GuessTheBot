@@ -30,7 +30,7 @@
 
                     <div id="result-message" class="alert" style="display: none;"></div>
 
-                    <form id="game-form" >
+                    <form id="game-form" method="POST" >
                         <input type="hidden" id="infographic-id" name="infographic_id" value="<?php echo $templateParams['infographic']['InfographicID']; ?>">
                         <input type="hidden" id="text-shown" name="text_shown" value="<?php echo $text_type_shown; ?>">
                         
@@ -38,6 +38,16 @@
                         <div class="d-grid gap-2 d-md-flex justify-content-md-center">
                             <button type="button" name="user_choice" data-choice="human" value="human" class="choice-btn btn btn-success btn-lg">Umano</button>
                             <button type="button" name="user_choice" data-choice="llm" value="llm" class="choice-btn btn btn-info btn-lg">Intelligenza Artificiale</button>
+                        </div>
+                        <div class="row justify-content-center mt-4">
+                            <div class="col-12 col-lg-6 mb-4">
+                                <label for="explanation" class="form-label">Facoltativo: spiega la tua scelta.</label>
+                                <textarea id="explanation" name="explanation" class="form-control mt-3" rows="3" placeholder="Scrivi qui..."></textarea>
+                            </div>
+                            <div class="col-12 col-lg-6 mb-4">
+                                <label for="consigli" class="form-label">Facoltativo: hai consigli per migliorare il gioco?</label>
+                                <textarea id="consigli" name="consigli" class="form-control mt-3" rows="3" placeholder="Scrivi qui..."></textarea>
+                            </div>
                         </div>
                     </form>
                 </div>
