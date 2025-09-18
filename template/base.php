@@ -62,11 +62,13 @@
             </nav>
         </header>
         
-        <!--main che per ora richiamo in ogni file-->
+        <main class="container">
+            <div class="row justify-content-center">
             <?php
             require($templateParams["nome"]);
             ?>
-        <!-- fine main -->
+            </div>
+        </main>
 
         <footer class="footer mt-auto mt-4 py-3">
             <p class="text-center">
