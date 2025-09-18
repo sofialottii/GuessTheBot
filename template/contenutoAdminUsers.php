@@ -28,8 +28,10 @@
                                     </tr>
                                 <?php endforeach; ?>
                             </tbody>
-                        </table>
                     
+                        </table>
+                    </div>
+                    <a href="index.php">Torna alla home</a>
                 </div>
             </div>
         </div>

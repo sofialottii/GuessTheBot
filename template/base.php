@@ -32,12 +32,24 @@
                             <li class="nav-item">
                                 <a class="nav-link <?php echo ($currentPage == 'index.php') ? 'active' : ''; ?>" href="index.php">Home</a>
                             </li>
+                            <?php if (isset($_SESSION["Admin"])): ?>
+                            <li class="nav-item">
+                                <a class="nav-link <?php echo ($currentPage == 'adminInfographics.php') ? 'active' : ''; ?>" href="adminInfographics.php">Infografiche</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link <?php echo ($currentPage == 'adminAnswers.php') ? 'active' : ''; ?>" href="adminAnswers.php">Risposte</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link <?php echo ($currentPage == 'adminUsers.php') ? 'active' : ''; ?>" href="adminUsers.php">Utenti</a>
+                            </li>
+                            <?php else: ?>
                             <li class="nav-item">
                                 <a class="nav-link <?php echo ($currentPage == 'classifica.php') ? 'active' : ''; ?>" href="classifica.php">Classifica</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link <?php echo ($currentPage == 'regole.php') ? 'active' : ''; ?>" href="regole.php">Come si gioca</a>
                             </li>
+                            <?php endif; ?>
                             <li class="nav-item">
                                 <a class="nav-link <?php echo ($currentPage == 'login.php') ? 'active' : ''; ?>" href="login.php">
                                     <?php if (isset($_SESSION["Admin"])): ?>Logout
