@@ -88,8 +88,8 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    function showFinalResults(data) {
-        const finalScore = data.score;
+    function showFinalResults(score) {
+        const finalScore = score;
         const totalRounds = 10;
 
         let message = '';
