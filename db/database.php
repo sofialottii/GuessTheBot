@@ -109,9 +109,10 @@ class DatabaseHelper{
     }
 
     public function getAllAnswers(){
-        $stmt = $this->db->prepare("SELECT a.*, i.ImagePath 
+        $stmt = $this->db->prepare("SELECT a.*, i.ImagePath, i.Title, u.Name
                                     FROM answers a
                                     LEFT JOIN infographics i ON a.InfographicID = i.InfographicID
+                                    LEFT JOIN users u ON A.UserID = u.UserID
                                     WHERE a.Motivation IS NOT NULL AND a.Motivation <> ''");
         $stmt->execute();
         $result = $stmt->get_result();
@@ -119,10 +120,11 @@ class DatabaseHelper{
     }
 
     public function getAllAdvices(){
-        $stmt = $this->db->prepare("SELECT a.*, i.ImagePath 
-                        FROM answers a
-                        LEFT JOIN infographics i ON a.InfographicID = i.InfographicID
-                        WHERE a.Advice IS NOT NULL AND a.Advice <> ''");
+        $stmt = $this->db->prepare("SELECT a.*, i.ImagePath, i.Title, u.Name
+                FROM answers a
+                LEFT JOIN infographics i ON a.InfographicID = i.InfographicID
+                LEFT JOIN users u ON a.UserID = u.UserID
+                WHERE a.Advice IS NOT NULL AND a.Advice <> ''");
         $stmt->execute();
         $result = $stmt->get_result();
         return $result->fetch_all(MYSQLI_ASSOC);
