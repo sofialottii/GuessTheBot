@@ -77,15 +77,5 @@
             </p>
         </footer>
 
-
     </body>
 </html>
-
-
-<!-- 
-bug da sistemare:
-- una volta finito il gioco viene fuori "undefined"/10
-- c'è un problema nella visualizzazione dei consigli, viene sempre fuori il primo consiglio
- 
-
--->

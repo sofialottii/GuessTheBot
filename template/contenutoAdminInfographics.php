@@ -49,6 +49,3 @@
         </div>
     </div>
 </div>
-        
-
-<script src="../assets/js/hoverSection.js"></script>

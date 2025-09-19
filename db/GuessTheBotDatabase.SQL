@@ -2,7 +2,8 @@
 -- crediti: Irene Sofia Lotti
 -- Data: 11-09-2025
 -- Descrizione:
--- Questo file contiene la creazione del database Guess The Bot, che include le tabelle per le note, i progetti e le attività.
+-- Questo file contiene la creazione del database Guess The Bot, che include le tabelle per le infografiche, le risposte date
+-- e la gestione degli utenti, oltre che al lato amministrativo.
 
 -- Eliminiamo il database se esiste già
 DROP DATABASE IF EXISTS GuessTheBot;

@@ -1,8 +1,5 @@
---da riempire
-
-INSERT INTO admin (username, password) VALUES ('admin1', 'password1');
-INSERT INTO admin (username, password) VALUES ('admin2', 'password2');
-INSERT INTO admin (username, password) VALUES ('admin3', 'password3');
+INSERT INTO admin (username, password) VALUES ('admin', 'password');
+INSERT INTO admin (username, password) VALUES ('user', '1234');
 
 INSERT INTO INFOGRAPHICS (Title, ImagePath, HumanText, LlmText) VALUES 
 ('Anziani', 'assets/images/anziani.jpg', "Due anziani insieme che ricordano il passato", "Una coppia di anziani ripensa al proprio passato e lo vede sulle nuvole"),
@@ -11,7 +8,7 @@ INSERT INTO INFOGRAPHICS (Title, ImagePath, HumanText, LlmText) VALUES
 ('Famiglia Addams', 'assets/images/famigliaAddams.jpg', "La famiglia Addams riunita in soggiorno", "La famiglia Addams si ritrova per una serata misteriosa"),
 ('Gatti e pioggia', 'assets/images/gattiPioggia.jpg', "Gatti che osservano la pioggia dalla finestra", "Dei gatti guardano la pioggia cadere fuori dalla finestra"),
 ('Un gatto e un leone', 'assets/images/gattoLeone.jpg', "Un gatto con una criniera da leone", "Un piccolo gatto si immagina di essere un grande leone"),
-('Il leopardo', 'assets/images/leopardo.jpg', "Un leopardo sdraiato su un ramo", "Un leopardo riposa su un ramo osservando la savana"),
+('Il leopardo', 'assets/images/leopardo.jpeg', "Un leopardo sdraiato su un ramo", "Un leopardo riposa su un ramo osservando la savana"),
 ('Lezione di matematica', 'assets/images/lezioneMatematica.jpg', "Una classe che segue una lezione di matematica", "Studenti attenti durante una lezione di matematica"),
 ('Libro di rose', 'assets/images/libroRose.jpg', "Un libro aperto con delle rose sopra", "Un libro decorato con rose fresche sulla copertina"),
 ('New York', 'assets/images/newyork.jpg', "Panorama di New York con i suoi grattacieli", "La skyline di New York illuminata al tramonto"),
