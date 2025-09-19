@@ -6,17 +6,12 @@
         <button id="showAnswersBtn" class="btn btn-primary m-2 col-lg-5">Mostra tutte le risposte</button>
         <button id="showAdvicesBtn" class="btn btn-secondary m-2 col-lg-5">Mostra tutti i consigli</button>
 
-
-        <!-- PARTE DELLE MOTIVAZIONI -->
-
-
         <!-- PARTE DELLE MOTIVAZIONI -->
 
         <div id="answersSection" class="mt-4" style="display:none;">
             <?php if (empty($templateParams["answers"])): ?> 
                 <p class="alert alert-warning">Nessuna risposta registrata.</p>
             <?php else: ?>
-                <h2 class="text-center mb-4">Dettaglio Risposte</h2>
                 <h2 class="text-center mb-4">Dettaglio Risposte</h2>
                 <?php foreach ($templateParams["answers"] as $answer): ?>
                     <div class="card mb-3 shadow-sm">
@@ -64,18 +59,6 @@
                         </div>
                     </div>
                 <?php endforeach; endif; ?>
-        </div>
-
-        <div id="advicesSection" class="mt-4" style="display:none;">
-            <?php if (empty($templateParams["advices"])): ?> 
-                <p class="alert alert-warning">Nessun consiglio registrato.</p>
-            <?php else: ?>
-                <?php foreach ($templateParams["adivces"] as $advice): ?>
-                    <div class="alert alert-info mb-2 d-flex align-items-center">
-                        <img src="../<?php echo $answer["ImagePath"]; ?>" alt="Immagine risposta" class="me-3 rounded" style="width:60px; height:60px; object-fit:cover;">
-                        <div>Consiglio: <?php echo $answer["Motivation"]; ?> </div>
-                    </div>
-            <?php endforeach; endif; ?>
         </div>
 
         <script>

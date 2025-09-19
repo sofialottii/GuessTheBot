@@ -27,7 +27,7 @@ class DatabaseHelper{
     }
 
     public function getRandomInfographic($excludeIds = []) {
-    $sql = "SELECT * FROM infographics";
+    $sql = "SELECT * FROM infographics WHERE IsActive = TRUE";
     if (!empty($excludeIds)) {
         $placeholders = str_repeat('?,', count($excludeIds) - 1) . '?';
         $sql .= " WHERE InfographicID NOT IN ($placeholders)";
@@ -131,7 +131,7 @@ class DatabaseHelper{
     }
 
     public function getAllInfographics(){
-        $stmt = $this->db->prepare("SELECT * FROM infographics");
+        $stmt = $this->db->prepare("SELECT * FROM infographics WHERE IsActive = TRUE");
         $stmt->execute();
         $result = $stmt->get_result();
         return $result->fetch_all(MYSQLI_ASSOC);
@@ -164,7 +164,13 @@ class DatabaseHelper{
         $stmt->execute();
         $result = $stmt->get_result();
         return $result->fetch_assoc();
-}
+    }
+
+    public function disableInfographic($idInfographic){
+        $stmt = $this->db->prepare("UPDATE infographics SET IsActive = FALSE WHERE InfographicID = ?");
+        $stmt->bind_param("i", $idInfographic);
+        $stmt->execute();
+    }
 
 
     /* per quanto farò la password hashata 

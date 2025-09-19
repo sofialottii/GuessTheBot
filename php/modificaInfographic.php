@@ -32,6 +32,12 @@ if(isset($_POST["modifica"])){
     exit;
 }
 
+if(isset($_POST["cancella"])) {
+    $dbh->disableInfographic($idInfographic);
+    header("location: adminInfographics.php");
+    exit;
+}
+
 $templateParams["infografica"] = $dbh->getInfographicById($idInfographic);
 
 $templateParams["titolo"] = "Modifica Infografica";

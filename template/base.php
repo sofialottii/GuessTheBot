@@ -85,7 +85,6 @@
 <!-- 
 cose mancanti:
 - poter cancellare le Infografiche
-- modificare la grafica di visualizzazione risposte e consigli
 - sistemare il gameloop, dando la possibilità di scegliere e poi premere il bottone per inviare la risposta
  
 

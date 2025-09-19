@@ -4,8 +4,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const resultMessage = document.getElementById('result-message');
     const currentRoundSpan = document.getElementById('current-round');
     const currentScoreSpan = document.getElementById('current-score');
-    const explanation = document.getElementById('explanation');
-    const advice = document.getElementById('consigli');
 
     choiceButtons.forEach(button => {
         button.addEventListener('click', function () {
