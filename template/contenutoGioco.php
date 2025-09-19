@@ -21,7 +21,7 @@
 
             <div class="col-12 col-lg-8 text-start">
 
-            <h2 class="text-center mb-4">Chi è l'autore di questo testo?</h2>
+                <h2 class="text-center mb-4">Chi è l'autore di questo testo?</h2>
                 
                 <p id="infographic-text" class="descrizione"><?php echo $text_to_show; ?></p>
                 
@@ -33,7 +33,7 @@
                 
                     <p class="text-center">Chi ha scritto questo testo?</p>
 
-                    <div class="d-grid gap-2 d-md-flex justify-content-md-center mb-4">
+                    <div id="choice-buttons" class="d-grid gap-2 d-md-flex justify-content-md-center mb-4">
                         <label for="human" class="d-none">Umano</label>
                         <button type="button" id="human" data-choice="human" class="choice-btn">Umano</button>
                         <label for="llm" class="d-none">Intelligenza Artificiale</label>
@@ -49,6 +49,10 @@
                             <label for="consigli" class="form-label small text-muted">Hai consigli per migliorare il gioco?</label>
                             <textarea id="consigli" name="consigli" class="form-control" rows="3" placeholder="Scrivi qui..."></textarea>
                         </div>
+                    </div>
+
+                    <div id="next-round-container" class="text-center mt-4" style="display: none;">
+                        <button type="button" id="next-round-btn" class="btn btn-primary btn-lg">Prossima Domanda</button>
                     </div>
                 </form>
             </div>

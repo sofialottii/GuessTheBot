@@ -83,9 +83,9 @@
 
 
 <!-- 
-cose mancanti:
-- poter cancellare le Infografiche
-- sistemare il gameloop, dando la possibilità di scegliere e poi premere il bottone per inviare la risposta
+bug da sistemare:
+- una volta finito il gioco viene fuori "undefined"/10
+- c'è un problema nella visualizzazione dei consigli, viene sempre fuori il primo consiglio
  
 
 -->

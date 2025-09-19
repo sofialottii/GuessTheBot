@@ -1,63 +1,80 @@
 document.addEventListener('DOMContentLoaded', function () {
 
     const choiceButtons = document.querySelectorAll('.choice-btn');
+    const nextRoundBtn = document.getElementById('next-round-btn');
+    const nextRoundContainer = document.getElementById('next-round-container');
     const resultMessage = document.getElementById('result-message');
     const currentRoundSpan = document.getElementById('current-round');
     const currentScoreSpan = document.getElementById('current-score');
+    const gameForm = document.getElementById('game-form');
+
+    let userChoice = null; //per memorizzare la scelta dell'utente
 
     choiceButtons.forEach(button => {
-        button.addEventListener('click', function () {
-            const userChoice = this.getAttribute('data-choice');
-            
-            choiceButtons.forEach(btn => btn.disabled = true); //così non può fare più scelte
-            const datas = new FormData();
-            datas.append('infographic_id', document.getElementById('infographic-id').value);
-            datas.append('text_shown', document.getElementById('text-shown').value);
-            datas.append('user_choice', userChoice);
-            datas.append('explanation', document.getElementById('explanation').value);
-            datas.append('advice', document.getElementById('consigli').value);
-
-            fetch('../api/submit_answer.php', {
-                method: 'POST',
-                body: datas
-            })
-                .then(response => response.json())
-                .then(data => {
-                    showResult(data);
-
-                    if (data.currentRound) {
-                        currentRoundSpan.textContent = data.currentRound;
-                    }
-                    if (data.score !== undefined) {
-                        currentScoreSpan.textContent = data.score;
-                    }
-
-                    //gioco finito
-                    if (data.gameFinished) {
-                        setTimeout(() => {
-                            showFinalResults(data);
-                        }, 2000);
-                    } else {
-                        //ogni round dura 1 secondo
-                        setTimeout(() => {
-                            loadNextRound();
-                        }, 1000);
-                    }
-                })
-                .catch(error => {
-                    console.error('Errore:', error);
-                    resultMessage.className = 'alert alert-danger';
-                    resultMessage.textContent = 'Errore durante l\'invio della risposta. Riprova.';
-                    resultMessage.style.display = 'block';
-                    choiceButtons.forEach(btn => btn.disabled = false);
-                });
-        });
+        button.addEventListener('click', handleUserChoice);
     });
 
-    function showResult(data) {
+    nextRoundBtn.addEventListener('click', handleNextRound);
+
+    function handleUserChoice(event) {
+        userChoice = event.target.dataset.choice;
+        const textShown = document.getElementById('text-shown').value;
+
+        choiceButtons.forEach(btn => btn.disabled = true);
+
+        const isCorrect = (userChoice === textShown);
+        showResult(isCorrect, textShown);
+
+        nextRoundContainer.style.display = 'block';
+    }
+
+    function handleNextRound() {
+        resultMessage.style.display = 'none';
+        nextRoundContainer.style.display = 'none';
+
+        const datas = new FormData(gameForm);
+        datas.append('user_choice', userChoice);
+
+        //chiamata api per salvare la risposta in db e andare al prox round
+        fetch('../api/process_round.php', {
+            method: 'POST',
+            body: datas
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (!data.success) {
+                    console.error(data.error);
+                    return;
+                }
+
+                currentScoreSpan.textContent = data.score;
+
+                if (data.gameFinished) {
+                    showFinalResults(data.score);
+                } else {
+                    updateUIForNextRound(data);
+                }
+            })
+            .catch(error => console.error('Errore:', error));
+    }
+
+    function updateUIForNextRound(data) {
+        document.getElementById('infographic-image').src = '../' + data.nextInfographic.ImagePath;
+        document.getElementById('infographic-text').textContent = data.nextTextToShow;
+        document.getElementById('infographic-id').value = data.nextInfographic.InfographicID;
+        document.getElementById('text-shown').value = data.nextTextTypeShown;
+
+        document.getElementById('explanation').value = '';
+        document.getElementById('consigli').value = '';
+        currentRoundSpan.textContent = data.currentRound;
+
+        choiceButtons.forEach(btn => btn.disabled = false);
+    }
+
+    function showResult(isCorrect, correctAnswer) {
         resultMessage.style.display = 'block';
 
-        if (data.isCorrect) {
+        if (isCorrect) {
             resultMessage.className = 'alert alert-success';
             resultMessage.innerHTML = `
                 <b>Corretto!</b>
@@ -69,28 +86,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 <b>Sbagliato!</b> Riprova al prossimo round!
             `;
         }
-    }
-
-    function loadNextRound() {
-        fetch('../api/next_round.php')
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    
-                    document.getElementById('infographic-image').src = '../' + data.infographic.ImagePath;
-                    document.getElementById('infographic-text').textContent = data.textToShow;
-                    document.getElementById('infographic-id').value = data.infographic.InfographicID;
-                    document.getElementById('text-shown').value = data.textTypeShown;
-                    resultMessage.style.display = 'none';
-
-                    choiceButtons.forEach(btn => btn.disabled = false);
-                } else {
-                    console.error('Errore nel caricamento del round successivo:', data.error);
-                }
-            })
-            .catch(error => {
-                console.error('Errore:', error);
-            });
     }
 
     function showFinalResults(data) {
