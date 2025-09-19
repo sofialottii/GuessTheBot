@@ -19,7 +19,7 @@ $textShown = $_POST['text_shown']; //human o llm
 $userChoice = $_POST['user_choice']; //human o llm
 $userID = $_SESSION["userID"];
 $explanation = isset($_POST['explanation']) ? $_POST['explanation'] : null;
-$advice = isset($_POST['consigli']) ? $_POST['consigli'] : null;
+$advice = isset($_POST['advice']) ? $_POST['advice'] : null;
 
 //controllo se la risposta è corretta
 $isCorrect = ($textShown === $userChoice) ? 'Y' : 'N';

@@ -22,7 +22,7 @@
                             </div>
                             <div class="col-md-10 p-3">
                                 <p class="h3 card-title <?php if ($answer["IsCorrect"] == 'Y'): ?>text-success<?php else: ?>text-danger<?php endif; ?>">
-                                    Scelta: <strong><?php echo (ucfirst($answer["UserChoice"])); ?></strong></p>
+                                    Scelta: <strong><?php echo $answer["UserChoice"]; ?></strong></p>
                                 <?php if ($answer["IsCorrect"] == 'N'): ?>
                                     <p class="card-text text-muted small">
                                         La risposta corretta era: <strong><?php echo $answer["TextShown"]; ?></strong>
@@ -31,6 +31,30 @@
                                 <blockquote class="blockquote mb-0">
                                         <p class="fs-6 fst-italic">"<?php echo $answer["Motivation"]; ?>"</p>
                                         <footer class="blockquote-footer mt-1">Motivazione dell'utente <?php echo $answer["Name"]; ?></footer>
+                                </blockquote>
+                            </div>
+                        </div>
+                    </div>
+                <?php endforeach; endif; ?>
+        </div>
+
+        <!-- PARTE DEI CONSIGLI -->
+
+        <div id="advicesSection" class="mt-4" style="display:none;">
+            <?php if (empty($templateParams["advices"])): ?> 
+                <p class="alert alert-warning">Nessun consiglio registrato.</p>
+            <?php else: ?>
+                <h2 class="text-center mb-4">Dettaglio Consigli</h2>
+                <?php foreach ($templateParams["advices"] as $advice): ?>
+                    <div class="card mb-3 shadow-sm">
+                        <div class="row g-0 align-items-center">
+                            <div class="col-md-2 text-center p-3">
+                                <img src="../<?php echo $advice["ImagePath"]; ?>" alt="<?php echo $advice["Title"]; ?>" class="img-fluid rounded" style="max-width: 100px;">
+                            </div>
+                            <div class="col-md-10 p-3">
+                                <blockquote class="blockquote mb-0">
+                                        <p class="fs-6 fst-italic">"<?php echo $answer["Motivation"]; ?>"</p>
+                                        <footer class="blockquote-footer mt-1">Consiglio dell'utente <?php echo $answer["Name"]; ?></footer>
                                 </blockquote>
                             </div>
                         </div>
