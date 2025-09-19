@@ -11,7 +11,7 @@ L'applicazione presenta all'utente una serie di infografiche, ognuna accompagnat
 * **Frontend**: HTML, CSS, Bootstrap, JavaScript
 * **Backend**: PHP
 * **Database**: MySQL
-* **Server Stack**: Apache (tramite XAMPP)
+* **Server Stack**: Apache
 
 ## Setup Locale
 
@@ -25,7 +25,7 @@ Ecco i passaggi da seguire per eseguire l'app in locale:
     Il progetto clonato deve essere spostato all'interno di questo percorso: C:\xampp\htdocs.
 
 3.  **Crea il Database**<br>
-    --da scrivere--
+    Aprire http://localhost/phpmyadmin/index.php?route=/ (phpMyAdmin), premere su "SQL". Copiare e incollare nell'apposita area il contenuto di db/GuessTheBotDatabase.SQL e subito dopo fare la stessa con db/inserisciDati.SQL
 
 4.  **Avvia l'Applicazione**<br>
     Da un browser, andare all'indirizzo `http://localhost/GuessTheBot`.

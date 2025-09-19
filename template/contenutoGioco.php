@@ -46,7 +46,7 @@
                             <textarea id="explanation" name="explanation" class="form-control" rows="3" placeholder="Scrivi qui..."></textarea>
                         </div>
                         <div class="col-md-6">
-                            <label for="consigli" class="form-label small text-muted">Hai consigli per migliorare il gioco?</label>
+                            <label for="consigli" class="form-label small text-muted">Lascia dei consigli per migliorare.</label>
                             <textarea id="consigli" name="consigli" class="form-control" rows="3" placeholder="Scrivi qui..."></textarea>
                         </div>
                     </div>
