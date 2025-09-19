@@ -27,10 +27,10 @@ class DatabaseHelper{
     }
 
     public function getRandomInfographic($excludeIds = []) {
-    $sql = "SELECT * FROM infographics WHERE IsActive = TRUE";
+    $sql = "SELECT * FROM infographics";
     if (!empty($excludeIds)) {
         $placeholders = str_repeat('?,', count($excludeIds) - 1) . '?';
-        $sql .= " WHERE InfographicID NOT IN ($placeholders)";
+        $sql .= " WHERE InfographicID NOT IN ($placeholders) AND IsActive = TRUE";
     }
     $sql .= " ORDER BY RAND() LIMIT 1";
     

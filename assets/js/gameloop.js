@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', function () {
         } else {
             resultMessage.className = 'alert alert-danger';
             resultMessage.innerHTML = `
-                <b>Sbagliato!</b> Riprova al prossimo round!'
+                <b>Sbagliato!</b> Riprova al prossimo round!
             `;
         }
     }

@@ -14,8 +14,9 @@
     <div class="card shadow-sm border-0">
         <div class="card-body p-4 p-md-5 row">
 
-            <div class="col-12 col-lg-4 d-flex align-items-center justify-content-center mb-lg-0 mb-3">
-                <img id="infographic-image" src="../<?php echo $templateParams['infographic']['ImagePath']; ?>" class="img-fluid rounded shadow-sm" alt="Infografica" />
+            <div class="col-12 col-lg-4 align-items-center justify-content-center mb-lg-0 my-3">
+                <img id="infographic-image" src="../<?php echo $templateParams['infographic']['ImagePath']; ?>" class="img-fluid rounded shadow-sm mb-4" alt="Infografica" />
+                <div id="result-message" class="alert mt-4" style="display: none;"></div>
             </div>
 
             <div class="col-12 col-lg-8 text-start">
@@ -49,14 +50,8 @@
                             <textarea id="consigli" name="consigli" class="form-control" rows="3" placeholder="Scrivi qui..."></textarea>
                         </div>
                     </div>
-
                 </form>
-
             </div>
-
-            <div id="result-message" class="alert" style="display: none;"></div>
-
-            
         </div>
     </div>
 </div>
