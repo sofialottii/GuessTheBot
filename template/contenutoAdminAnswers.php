@@ -9,10 +9,14 @@
 
         <!-- PARTE DELLE MOTIVAZIONI -->
 
+
+        <!-- PARTE DELLE MOTIVAZIONI -->
+
         <div id="answersSection" class="mt-4" style="display:none;">
             <?php if (empty($templateParams["answers"])): ?> 
                 <p class="alert alert-warning">Nessuna risposta registrata.</p>
             <?php else: ?>
+                <h2 class="text-center mb-4">Dettaglio Risposte</h2>
                 <h2 class="text-center mb-4">Dettaglio Risposte</h2>
                 <?php foreach ($templateParams["answers"] as $answer): ?>
                     <div class="card mb-3 shadow-sm">
