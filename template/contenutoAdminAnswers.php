@@ -52,8 +52,8 @@
                             </div>
                             <div class="col-md-10 p-3">
                                 <blockquote class="blockquote mb-0">
-                                        <p class="fs-6 fst-italic">"<?php echo $answer["Motivation"]; ?>"</p>
-                                        <footer class="blockquote-footer mt-1">Consiglio dell'utente <?php echo $answer["Name"]; ?></footer>
+                                        <p class="fs-6 fst-italic">"<?php echo $advice["Advice"]; ?>"</p>
+                                        <footer class="blockquote-footer mt-1">Consiglio dell'utente <?php echo $advice["Name"]; ?></footer>
                                 </blockquote>
                             </div>
                         </div>
