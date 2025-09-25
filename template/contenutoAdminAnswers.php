@@ -17,7 +17,10 @@
                     <div class="card mb-3 shadow-sm">
                         <div class="row g-0 align-items-center">
                             <div class="col-md-2 text-center p-3">
-                                <img src="../<?php echo $answer["ImagePath"]; ?>" alt="<?php echo $answer["Title"]; ?>" class="img-fluid rounded" style="max-width: 100px;">
+                                <a href="dettaglioInfografica.php?IDInfographic=<?php echo $answer['InfographicID']; ?>" class="stretched-link">
+                                    <img src="../<?php echo $answer["ImagePath"]; ?>" alt="<?php echo $answer["Title"]; ?>" class="img-fluid rounded" style="max-width: 100px;">
+                                </a>
+                                
                             </div>
                             <div class="col-md-10 p-3">
                                 <p class="h3 card-title <?php if ($answer["IsCorrect"] == 'Y'): ?>text-success<?php else: ?>text-danger<?php endif; ?>">

@@ -28,7 +28,7 @@ if(isset($_POST["modifica"])){
 
     $dbh->updateInfographic($idInfographic, $_POST["nome"], $imagePath, $_POST["humanText"], $_POST["llmText"]);
     
-    header("location: adminInfographics.php");
+    header("location: dettaglioInfografica.php?IDInfographic=" . $idInfographic);
     exit;
 }
 

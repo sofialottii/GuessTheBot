@@ -25,7 +25,7 @@
                 <textarea id="llmText" name="llmText" class="form-control" rows="4" required><?php echo $templateParams["infografica"]["LlmText"]; ?></textarea>
                 </li>
                 <li class="d-grid gap-2 d-md-flex justify-content-md-end mt-3">
-                    <a href="adminInfographics.php" class="mt-3 mx-2">Annulla</a>
+                    <a href="dettaglioInfografica.php?IDInfographic=<?php echo $idInfographic; ?>" class="mt-3 mx-2">Annulla</a>
                     <input type="submit" name="cancella" class="btn btn-danger" value="Elimina infografica" />
                     <input type="submit" name="modifica" value="Salva Modifiche" />
                 </li>

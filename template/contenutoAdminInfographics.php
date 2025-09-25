@@ -6,7 +6,7 @@
             <div class="row g-4">
                 <?php foreach($templateParams["infographics"] as $infographic): ?>
                 <div class="col-12 col-md-6 col-lg-3">
-                    <form action="modificaInfographic.php" method="GET">
+                    <form action="dettaglioInfografica.php" method="GET">
                         <label for="info<?php echo $infographic['InfographicID']; ?>" class="d-none">id</label>
                         <input type="number" class="d-none" name="IDInfographic" id="info<?php echo $infographic['InfographicID']; ?>" value="<?php echo $infographic['InfographicID']; ?>" />
             

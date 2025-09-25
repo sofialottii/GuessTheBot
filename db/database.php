@@ -91,14 +91,6 @@ class DatabaseHelper{
         return [];
     }
     
-    /*public function checkLogin($username, $password){
-        $stmt = $this->db->prepare("SELECT * FROM admin WHERE Username = ? AND Password = ?");
-        $stmt->bind_param("ss", $username, $password);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        return $result->fetch_all(MYSQLI_ASSOC);
-    }*/
-
     public function deleteUser($idUser){
         $stmt = $this->db->prepare("DELETE FROM answers WHERE UserID = ?");
         $stmt->bind_param("i", $idUser);
@@ -178,26 +170,40 @@ class DatabaseHelper{
         return $result->fetch_assoc();
     }
 
+    public function getStatisticsInfographicById($idInfographic){
+        $stmt = $this->db->prepare("SELECT i.*,
+                                        COUNT(a.AnswerID) AS TotalAnswers,
+                                        SUM(CASE WHEN a.IsCorrect = 'Y' THEN 1 ELSE 0 END) AS CorrectAnswers,
+                                        SUM(CASE WHEN a.IsCorrect = 'N' THEN 1 ELSE 0 END) AS IncorrectAnswers,
+                                        AVG(CASE WHEN a.IsCorrect = 'Y' THEN 1 ELSE 0 END) * 100 AS AccuracyPercentage
+                                    FROM infographics i
+                                    LEFT JOIN answers a ON i.InfographicID = a.InfographicID
+                                    WHERE i.InfographicID = ?
+                                    GROUP BY i.InfographicID, i.Title");
+        $stmt->bind_param("i", $idInfographic);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_assoc();
+    }
+
+    public function getAllAnswersById($idInfographic){
+        $stmt = $this->db->prepare("SELECT a.*, u.Name
+                                            FROM answers a
+                                            LEFT JOIN users u ON a.UserID = u.UserID
+                                            WHERE a.InfographicID = ?
+                                            AND (a.Motivation IS NOT NULL AND a.Motivation <> '' OR a.Advice IS NOT NULL AND a.Advice <> '')");
+        $stmt->bind_param("i", $idInfographic);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
     public function disableInfographic($idInfographic){
         $stmt = $this->db->prepare("UPDATE infographics SET IsActive = FALSE WHERE InfographicID = ?");
         $stmt->bind_param("i", $idInfographic);
         $stmt->execute();
     }
 
-
-    /* per quanto farò la password hashata 
-    public function checkLogin($username, $password){
-        $stmt = $this->db->prepare("SELECT * FROM admin WHERE Username = ?");
-        $stmt->bind_param("s", $username);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        $user = $result->fetch_all(MYSQLI_ASSOC);
-        if(count($user) > 0 && password_verify($password, $user[0]["Password"])){
-            return $user;
-        }
-        return [];
-    }
-    */
 
 }
 
