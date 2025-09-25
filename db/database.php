@@ -80,12 +80,24 @@ class DatabaseHelper{
     /* ADMIN */
 
     public function checkLogin($username, $password){
+        $stmt = $this->db->prepare("SELECT * FROM admin WHERE Username = ?");
+        $stmt->bind_param("s", $username);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $user = $result->fetch_all(MYSQLI_ASSOC);
+        if(count($user) > 0 && password_verify($password, $user[0]["Password"])){
+            return $user;
+        }
+        return [];
+    }
+    
+    /*public function checkLogin($username, $password){
         $stmt = $this->db->prepare("SELECT * FROM admin WHERE Username = ? AND Password = ?");
         $stmt->bind_param("ss", $username, $password);
         $stmt->execute();
         $result = $stmt->get_result();
         return $result->fetch_all(MYSQLI_ASSOC);
-    }
+    }*/
 
     public function deleteUser($idUser){
         $stmt = $this->db->prepare("DELETE FROM answers WHERE UserID = ?");
