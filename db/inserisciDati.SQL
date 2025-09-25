@@ -1,5 +1,6 @@
-INSERT INTO admin (username, password) VALUES ('admin', 'password');
-INSERT INTO admin (username, password) VALUES ('user', '1234');
+INSERT INTO admin (username, password) VALUES ('admin1', '$2y$10$uP/GotZQ4Av6uzXB0lJSp.VNJ11m2.vUh6rJtWaRf07cLAU9T5gce'); /* pwd: password1 */
+INSERT INTO admin (username, password) VALUES ('admin2', '$2y$10$NCKuCNPHnctdOBQal9yxRe6ekAJ2Mg14Iy25iVjpV9n9kdpnDHlJe'); /* pwd: password2 */
+INSERT INTO admin (username, password) VALUES ('admin3', '$2y$10$GMAY3rjItrGwnw7WGkWAHeof1jGNUxcAFCe3IPekzEjTZ8Nh4L.6C'); /* pwd: password3 */
 
 INSERT INTO INFOGRAPHICS (Title, ImagePath, HumanText, LlmText) VALUES 
 ('Anziani', 'assets/images/anziani.jpg', "Due anziani insieme che ricordano il passato", "Una coppia di anziani ripensa al proprio passato e lo vede sulle nuvole"),

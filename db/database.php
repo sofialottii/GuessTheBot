@@ -204,6 +204,44 @@ class DatabaseHelper{
         $stmt->execute();
     }
 
+    /* EVENTI */
+
+    public function getAllEvents(){
+    $stmt = $this->db->prepare("SELECT * FROM GAME_EVENTS ORDER BY createdAt DESC");
+    $stmt->execute();
+    $result = $stmt->get_result();
+    return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function addEvent($eventName, $mode, $isActive, $expiresAt){
+        $stmt = $this->db->prepare("INSERT INTO GAME_EVENTS (EventName, Mode, IsActive, ExpiresAt)
+                                        VALUES (?, ?, ?, ?)");
+        $stmt->bind_param("ssis", $eventName, $mode, $isActive, $expiresAt);
+        $stmt->execute();
+        return $stmt->insert_id;
+    }
+
+    public function deactivateAllEvents(){
+        $stmt = $this->db->prepare("UPDATE GAME_EVENTS SET IsActive = FALSE");
+        $stmt->execute();
+    }
+
+    public function activateEvent($eventId){
+    //disabilitiamo tutti gli eventi attivi
+    $stmt1 = $this->db->prepare("UPDATE GAME_EVENTS SET isActive = FALSE WHERE isActive = TRUE");
+    $stmt1->execute();
+    //abilitiamo l'evento selezionato
+    $stmt2 = $this->db->prepare("UPDATE GAME_EVENTS SET isActive = TRUE WHERE GameID = ?");
+    $stmt2->bind_param("i", $eventId);
+    $stmt2->execute();
+    }
+
+    public function deleteEvent($eventId){
+    $stmt = $this->db->prepare("DELETE FROM GAME_EVENTS WHERE GameID = ?");
+    $stmt->bind_param("i", $eventId);
+    $stmt->execute();
+    }
+
 
 }
 
