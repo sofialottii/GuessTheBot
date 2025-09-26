@@ -254,6 +254,17 @@ button:active, li input[type="submit"]:active, .bottone:active {
 }
 /*fine crea evento*/
 
+.card-body-link {
+    text-decoration: none;
+    color: inherit;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.card-body-link:hover {
+    background-color: #f8f9fa;
+    /* Un grigio leggero al passaggio del mouse */
+}
+
 
 @media (max-width: 768px) {
     .flip-container {
