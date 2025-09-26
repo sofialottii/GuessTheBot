@@ -242,6 +242,14 @@ class DatabaseHelper{
     $stmt->execute();
     }
 
+    public function associateInfographicToEvent($idEvent, $infographicID){
+        $stmt = $this->db->prepare("INSERT INTO EVENT_INFOGRAPHICS (GameID, InfographicID)
+                                        VALUES (?, ?)");
+        $stmt->bind_param("ii", $idEvent, $infographicID);
+        $stmt->execute();
+        return $stmt->insert_id;
+    }
+
 
 }
 
