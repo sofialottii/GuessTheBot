@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title><?php echo $templateParams["titolo"]; ?></title>
-        <link rel="stylesheet" type="text/css" href="../assets/css/style.css?v=4671" />
+        <link rel="stylesheet" type="text/css" href="../assets/css/style.css?v=64671" />
 
         <link rel="icon" type="image/png" href="../assets/logo.png">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
@@ -34,6 +34,9 @@
                             </li>
                             <?php if (isset($_SESSION["Admin"])): ?>
                             <li class="nav-item">
+                                <a class="nav-link <?php echo ($currentPage == 'adminEvents.php') ? 'active' : ''; ?>" href="adminEvents.php">Eventi</a>
+                            </li>    
+                            <li class="nav-item">
                                 <a class="nav-link <?php echo ($currentPage == 'adminInfographics.php') ? 'active' : ''; ?>" href="adminInfographics.php">Infografiche</a>
                             </li>
                             <li class="nav-item">
@@ -42,6 +45,7 @@
                             <li class="nav-item">
                                 <a class="nav-link <?php echo ($currentPage == 'adminUsers.php') ? 'active' : ''; ?>" href="adminUsers.php">Utenti</a>
                             </li>
+                        
                             <?php else: ?>
                             <li class="nav-item">
                                 <a class="nav-link <?php echo ($currentPage == 'classifica.php') ? 'active' : ''; ?>" href="classifica.php">Classifica</a>

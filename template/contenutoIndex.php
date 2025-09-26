@@ -41,6 +41,9 @@
             </p>
             <ul class="p-0 list-unstyled">
                 <li class="mb-3">
+                    <a href="adminEvents.php" class="bottone my-3">Gestisci Eventi</a>
+                </li>
+                <li class="mb-3">
                     <a href="adminInfographics.php" class="bottone my-3">Gestisci Infografiche</a>
                 </li>
                 <li class="mb-3">
@@ -49,6 +52,7 @@
                 <li class="mb-3">
                     <a href="adminUsers.php" class="bottone my-3">Gestisci Utenti</a>
                 </li>
+                
             <a href="login.php" class="bottone my-3">Logout</a>
                 
             <?php endif; ?>
