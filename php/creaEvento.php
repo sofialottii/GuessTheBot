@@ -14,7 +14,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             $dbh->deactivateAllEvents();
         }
         $idEvent = $dbh->addEvent($_POST["eventName"], $_POST["eventMode"], $isActive, $endDate);
-        if ($_POST["eventMode"] == "fixed" && !empty($infographicIDs)) {
+        if ($_POST["eventMode"] == "fixed") {
             
             $count = count($infographicIDs);
             $finalIDsToSave = [];

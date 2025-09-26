@@ -83,3 +83,21 @@
 
     </body>
 </html>
+
+<!--
+
+da sistemare:
+
+-in creaEvento usare ajax per scorrimento immagini: devono essere mostrate solo due righe di immagini alla volta
+-in creaEvento, se modalità fixed, inserire il numero visivo di infografiche selezionate e il numero massimo selezionabile
+
+-in dettaglioEvento, sistemare completamente
+-in dettaglioEvento, quando nelle statistiche si toccherà su un'immagine, dovrà portare a dettaglioInfografica a cui bisogna passare id della sessione
+
+-in gioco, attivare il concetto di sessione di gioco
+
+-in adminAnswers, valutare la possibilità di filtrare per evento
+-stessa cosa per adminUsers
+
+
+-->

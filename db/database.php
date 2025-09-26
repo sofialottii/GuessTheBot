@@ -207,14 +207,14 @@ class DatabaseHelper{
     /* EVENTI */
 
     public function getAllEvents(){
-    $stmt = $this->db->prepare("SELECT * FROM GAME_EVENTS ORDER BY createdAt DESC");
+    $stmt = $this->db->prepare("SELECT * FROM game_events ORDER BY CreatedAt DESC");
     $stmt->execute();
     $result = $stmt->get_result();
     return $result->fetch_all(MYSQLI_ASSOC);
     }
 
     public function addEvent($eventName, $mode, $isActive, $expiresAt){
-        $stmt = $this->db->prepare("INSERT INTO GAME_EVENTS (EventName, Mode, IsActive, ExpiresAt)
+        $stmt = $this->db->prepare("INSERT INTO game_events (EventName, Mode, IsActive, ExpiresAt)
                                         VALUES (?, ?, ?, ?)");
         $stmt->bind_param("ssis", $eventName, $mode, $isActive, $expiresAt);
         $stmt->execute();
@@ -222,32 +222,95 @@ class DatabaseHelper{
     }
 
     public function deactivateAllEvents(){
-        $stmt = $this->db->prepare("UPDATE GAME_EVENTS SET IsActive = FALSE");
+        $stmt = $this->db->prepare("UPDATE game_events SET IsActive = FALSE");
         $stmt->execute();
     }
 
     public function activateEvent($eventId){
-    //disabilitiamo tutti gli eventi attivi
-    $stmt1 = $this->db->prepare("UPDATE GAME_EVENTS SET isActive = FALSE WHERE isActive = TRUE");
+    
+        //disabilitiamo tutti gli eventi attivi
+    $stmt1 = $this->db->prepare("UPDATE game_events SET IsActive = FALSE WHERE IsActive = TRUE");
     $stmt1->execute();
     //abilitiamo l'evento selezionato
-    $stmt2 = $this->db->prepare("UPDATE GAME_EVENTS SET isActive = TRUE WHERE GameID = ?");
+    $stmt2 = $this->db->prepare("UPDATE game_events SET IsActive = TRUE WHERE GameID = ?");
     $stmt2->bind_param("i", $eventId);
     $stmt2->execute();
     }
 
     public function deleteEvent($eventId){
-    $stmt = $this->db->prepare("DELETE FROM GAME_EVENTS WHERE GameID = ?");
-    $stmt->bind_param("i", $eventId);
-    $stmt->execute();
+        //prima controllo se è fixed così elimino anche le righe in event_infographics
+        $stmt = $this->db->prepare("SELECT Mode FROM game_events WHERE GameID = ?");
+        $stmt->bind_param("i", $eventId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $row = $result->fetch_assoc();
+
+        if ($row && $row['Mode'] === 'fixed') {
+            $stmtDel = $this->db->prepare("DELETE FROM event_infographics WHERE GameID = ?");
+            $stmtDel->bind_param("i", $eventId);
+            $stmtDel->execute();
+        }
+
+        //ora posso eliminare l'evento
+        $stmt = $this->db->prepare("DELETE FROM game_events WHERE GameID = ?");
+        $stmt->bind_param("i", $eventId);
+        $stmt->execute();
     }
 
     public function associateInfographicToEvent($idEvent, $infographicID){
-        $stmt = $this->db->prepare("INSERT INTO EVENT_INFOGRAPHICS (GameID, InfographicID)
+        $stmt = $this->db->prepare("INSERT INTO event_infographics (GameID, InfographicID)
                                         VALUES (?, ?)");
         $stmt->bind_param("ii", $idEvent, $infographicID);
         $stmt->execute();
         return $stmt->insert_id;
+    }
+
+    public function getEventById($eventId) {
+        $stmt = $this->db->prepare("SELECT * FROM game_events WHERE GameID = ?");
+        $stmt->bind_param("i", $eventId);
+        $stmt->execute();
+        return $stmt->get_result()->fetch_assoc();
+    }
+
+    public function getInfographicStatsForEvent($eventId) {
+        $stmt = $this->db->prepare("SELECT i.*,
+                                        COUNT(a.AnswerID) AS TotalAnswers,
+                                        SUM(CASE WHEN a.IsCorrect = 'Y' THEN 1 ELSE 0 END) AS CorrectAnswers,
+                                        SUM(CASE WHEN a.IsCorrect = 'N' THEN 1 ELSE 0 END) AS IncorrectAnswers,
+                                        AVG(CASE WHEN a.IsCorrect = 'Y' THEN 1 ELSE 0 END) * 100 AS AccuracyPercentage
+                                    FROM infographics i
+                                    LEFT JOIN answers a ON i.InfographicID = a.InfographicID
+                                    WHERE a.GameID = ?
+                                    GROUP BY i.InfographicID, i.Title
+                                    ORDER BY TotalAnswers DESC");
+        $stmt->bind_param("i", $eventId);
+        $stmt->execute();
+        return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+}
+
+    //commenti (motivazioni e consigli) per una specifica infografica in un evento
+    public function getTextualFeedbackForInfographicInEvent($eventId, $infographicId) {
+        $stmt = $this->db->prepare("
+            SELECT u.Name, a.*
+            FROM answers a
+            JOIN users u ON a.UserID = u.id
+            WHERE a.event_id = ? AND a.InfographicID = ? AND (a.Motivation IS NOT NULL OR a.Advice IS NOT NULL)
+        ");
+        $stmt->bind_param("ii", $eventId, $infographicId);
+        $stmt->execute();
+        return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+    }
+
+    //prende le infografiche associate a un evento "fisso"
+    public function getFixedInfographicsForEvent($eventId) {
+        $stmt = $this->db->prepare("
+            SELECT i.* FROM event_infographics ei
+            JOIN infographics i ON ei.InfographicID = i.InfographicID
+            WHERE ei.GameID = ?
+        ");
+        $stmt->bind_param("i", $eventId);
+        $stmt->execute();
+        return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
     }
 
 

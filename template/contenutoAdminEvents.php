@@ -23,7 +23,7 @@
                     <div class="card-body">
                         <a href="dettaglioEvento.php?GameID=<?php echo $event['GameID']; ?>" class="card-body-link">
                             <div class="row align-items-center">
-                                <div class="col-md-9">
+                                <div class="col-md-8 justify-content-between">
                                     <dl class="row mb-0">
                                         <dt class="col-sm-4">Modalità di Gioco</dt>
                                         <dd class="col-sm-8"><?php echo ($event["Mode"] == 'fixed') ? 'Fissa' : 'Casuale'; ?></dd>
@@ -35,9 +35,9 @@
                                         <dd class="col-sm-8"><?php echo $event["ExpiresAt"] ? date("d/m/Y H:i", strtotime($event["ExpiresAt"])) : 'Nessuna'; ?></dd>
                                     </dl>
                                 </div>
-                                <div class="col-md-3 d-none d-md-flex align-items-center justify-content-center text-secondary">
+                                <!--<div class="col-md-3 d-none d-md-flex align-items-center justify-content-center text-secondary">
                                     <i class="bi bi-box-arrow-in-right h1"></i>
-                                </div>
+                                </div>-->
                             </div>
                         </a>
                         <form action="adminEvents.php" method="POST" class="d-inline-block me-2">
