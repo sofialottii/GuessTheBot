@@ -233,7 +233,7 @@ class DatabaseHelper{
     }
 
     public function deactivateAllEvents(){
-        $stmt = $this->db->prepare("UPDATE game_events SET IsActive = FALSE");
+        $stmt = $this->db->prepare("UPDATE game_events SET IsActive = FALSE WHERE IsActive = TRUE");
         $stmt->execute();
     }
 

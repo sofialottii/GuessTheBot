@@ -17,6 +17,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         header("Location: adminEvents.php");
         exit;
     }
+
+    if(isset($_POST["deactivateEvent"])){
+        $dbh->deactivateallEvents();
+        header("Location: adminEvents.php");
+        exit;
+    }
 }
 
 $templateParams["events"] = $dbh->getAllEvents();
