@@ -42,12 +42,16 @@
             <div id="infographics-selection" style="display: none;">
                 <h2 class="h4 mb-3">Seleziona le Infografiche per l'Evento</h2>
                 <p class="text-muted">Scegli le infografiche che verranno mostrate a tutti i giocatori in questo evento. Se ne scegli più di 10, verranno selezionate casualmente tra quelle scelte.</p>
-                
-                <div class="row mt-3">
+                <span class="badge bg-primary rounded-pill fs-6">
+                    Selezionate: <span id="selection-counter">0</span> / 10
+                </span>
+
+
+                <div id="infographics-grid" class="row mt-3">
                     <?php foreach ($templateParams["infographics"] as $infographic): ?>
-                        <div class="col-6 col-md-4 col-lg-2 mb-3">
+                        <div class="col-6 col-md-4 col-lg-2 mb-3 infographic-item">
                             <div class="form-check card-check div-fit">
-                                <input class="form-check-input" type="checkbox" name="infographics[]" value="<?php echo $infographic['InfographicID']; ?>" id="infographic_<?php echo $infographic['InfographicID']; ?>">
+                                <input class="form-check-input infographic-checkbox" type="checkbox" name="infographics[]" value="<?php echo $infographic['InfographicID']; ?>" id="infographic_<?php echo $infographic['InfographicID']; ?>">
                                 <label class="form-check-label" for="infographic_<?php echo $infographic['InfographicID']; ?>">
                                     <img src="../<?php echo $infographic['ImagePath']; ?>" class="img-fit rounded" alt="">
                                 </label>
@@ -55,6 +59,16 @@
                         </div>
                     <?php endforeach; ?>
                 </div>
+                <nav id="infographics-pagination" class="d-flex justify-content-center mt-3" aria-label="Paginazione infografiche">
+                    <ul class="pagination">
+                        <li class="page-item">
+                            <a class="page-link" href="#" id="prev-page">Precedente</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#" id="next-page">Successiva</a>
+                        </li>
+                    </ul>
+                </nav>
             </div>
 
             <div class="d-flex justify-content-end mt-4">
@@ -63,6 +77,8 @@
             </div>
 
         </form>
+
+<script src="../assets/js/caroselloImmagini.js"></script>
 
 <script>
 document.getElementById('eventMode').addEventListener('change', function () {
