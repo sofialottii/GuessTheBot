@@ -88,13 +88,16 @@
 
 da sistemare:
 
+-in Eventi, creare bottone per disattivare la sessione attiva
+
 -in dettaglioEvento, sistemare completamente
 -in dettaglioEvento, quando nelle statistiche si toccherà su un'immagine, dovrà portare a dettaglioInfografica a cui bisogna passare id della sessione
 
--in gioco, attivare il concetto di sessione di gioco
-
 -in adminAnswers, valutare la possibilità di filtrare per evento
 -stessa cosa per adminUsers
+
+idea per quando controllare se la scadenza dell'evento attivo è scaduta:
+- quando parte una nuova partita e quando si va a controllare le sessioni di gioco lato admin
 
 
 -->

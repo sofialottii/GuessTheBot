@@ -4,6 +4,8 @@ require_once("bootstrap.php");
 
 session_start();
 
+$activeEvent = $dbh->getActiveEvent();
+
 /**
  * Controllo l'inserimento del nome del giocatore, se non è settato lo rimando alla home.
  * Inizializzo le variabili di sessione per il gioco.
@@ -17,16 +19,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" & isset($_POST["playerName"])) {
     $_SESSION["currentRound"] = 1;
     $_SESSION["score"] = 0;
     $_SESSION["usedInfographics"] = []; 
+    $_SESSION["currentEvent"] = $activeEvent; //null se non c'è evento attivo
 
     if (!isset($_SESSION["userID"])){
         header("Location: index.php");
         exit();
     }
+    if ($activeEvent && $activeEvent["Mode"] == 'fixed') {
+        $fixedInfographics = $dbh->getFixedInfographicsForEvent($activeEvent['GameID']);
+        $_SESSION["fixedInfographicsList"] = array_column($fixedInfographics, 'InfographicID');
+    }
 }
 
-//nuova infografica
-$infographica = $dbh->getRandomInfographic($_SESSION["usedInfographics"]);
-$templateParams["infographic"] = $infographica[0];
+if (isset($_SESSION["currentEvent"]) && $_SESSION["currentEvent"]["Mode"] == 'fixed') {
+    //MODALITA FISSA
+    $nextInfographicId = $_SESSION["fixedInfographicsList"][$_SESSION["currentRound"] - 1];
+    $infographica = $dbh->getInfographicById($nextInfographicId);
+} else {
+    //RANDOM OPPURE NO EVENTI ATTIVI
+    $infographicaArray = $dbh->getRandomInfographic($_SESSION["usedInfographics"]);
+    $infographica = $infographicaArray[0];
+}
+
+$templateParams["infographic"] = $infographica;
 
 //testo mostrato -> 0 umano, 1 llm
 if (rand(0, 1) == 0) {

@@ -10,6 +10,7 @@ if (!isset($_SESSION["userID"])) {
 }
 
 $infographicId = (int)$_POST['infographic_id'];
+$eventId = isset($_SESSION["currentEvent"]) ? $_SESSION["currentEvent"]["GameID"] : null;
 $textShown = $_POST['text_shown']; //human o llm
 $userChoice = $_POST['user_choice']; //human o llm
 $userID = $_SESSION["userID"];
@@ -19,7 +20,7 @@ $advice = !empty($_POST['consigli']) ? $_POST['consigli'] : null;
 $isCorrect = ($textShown === $userChoice) ? 'Y' : 'N';
 
 
-$dbh->addAnswer($infographicId, $userID, $textShown, $userChoice, $isCorrect, $explanation, $advice);
+$dbh->addAnswer($infographicId, $userID, $eventId, $textShown, $userChoice, $isCorrect, $explanation, $advice);
 
 //se la risposta è corretta aumenta lo score
 if ($isCorrect == 'Y') {
@@ -49,7 +50,17 @@ if ($gameFinished) {
 
 //dati per prossimo round
 try {
-    $newInfographic = $dbh->getRandomInfographic($_SESSION["usedInfographics"])[0];
+    if (isset($_SESSION["currentEvent"]) && $_SESSION["currentEvent"]["Mode"] == 'fixed') {
+        //MODALITA FISSA
+        $nextInfographicId = $_SESSION["fixedInfographicsList"][$_SESSION["currentRound"] - 1];
+        $newInfographic = $dbh->getInfographicById($nextInfographicId);
+    } else {
+        //RANDOM O NO EVENTO ATTIVO
+        $newInfographic = $dbh->getRandomInfographic($_SESSION["usedInfographics"])[0];
+    }
+
+
+
     
     if (rand(0, 1) == 0) {
         $text_to_show = $newInfographic['HumanText'];

@@ -26,32 +26,43 @@ class DatabaseHelper{
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
-    public function getRandomInfographic($excludeIds = []) {
-    $sql = "SELECT * FROM infographics";
-    if (!empty($excludeIds)) {
-        $placeholders = str_repeat('?,', count($excludeIds) - 1) . '?';
-        $sql .= " WHERE InfographicID NOT IN ($placeholders) AND IsActive = TRUE";
-    }
-    $sql .= " ORDER BY RAND() LIMIT 1";
-    
-    $stmt = $this->db->prepare($sql);
-    
-    if (!empty($excludeIds)) {
-        $types = str_repeat('i', count($excludeIds));
-        $stmt->bind_param($types, ...$excludeIds);
-    }
-    
-    $stmt->execute();
-    $result = $stmt->get_result();
-    return $result->fetch_all(MYSQLI_ASSOC);
-}
+    /* GAMELOOP */
 
-    public function addAnswer($idInfographic, $idUser, $textShown, $userChoice, $isCorrect, $motivation, $advice){
-        $stmt = $this->db->prepare("INSERT INTO answers (InfographicID, UserID, TextShown, UserChoice, IsCorrect, Motivation, Advice)
-                                        VALUES (?, ?, ?, ?, ?, ?, ?)");
-        $stmt->bind_param("iisssss",$idInfographic, $idUser, $textShown, $userChoice, $isCorrect, $motivation, $advice);
+    public function getRandomInfographic($excludeIds = []) {
+        $sql = "SELECT * FROM infographics";
+        if (!empty($excludeIds)) {
+            $placeholders = str_repeat('?,', count($excludeIds) - 1) . '?';
+            $sql .= " WHERE InfographicID NOT IN ($placeholders) AND IsActive = TRUE";
+        }
+        $sql .= " ORDER BY RAND() LIMIT 1";
+        
+        $stmt = $this->db->prepare($sql);
+        
+        if (!empty($excludeIds)) {
+            $types = str_repeat('i', count($excludeIds));
+            $stmt->bind_param($types, ...$excludeIds);
+        }
+        
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function getActiveEvent() {
+        $stmt = $this->db->prepare("SELECT * FROM game_events WHERE IsActive = TRUE LIMIT 1");
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_assoc(); //null se non c'è evento attivo
+    }
+
+    public function addAnswer($idInfographic, $idUser, $idGame, $textShown, $userChoice, $isCorrect, $motivation, $advice){
+        $stmt = $this->db->prepare("INSERT INTO answers (InfographicID, UserID, GameID, TextShown, UserChoice, IsCorrect, Motivation, Advice)
+                                        VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("iiisssss",$idInfographic, $idUser, $idGame, $textShown, $userChoice, $isCorrect, $motivation, $advice);
         $stmt->execute();
     }
+
+    /* CLASSIFICA UTENTE */
 
     public function getLeaderboard(){
         $stmt = $this->db->prepare("SELECT u.Name, u.UserID, COUNT(a.IsCorrect) AS score
