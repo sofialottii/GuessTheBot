@@ -324,6 +324,16 @@ class DatabaseHelper{
         return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
     }
 
+    public function deactivateExpiredActiveEvent() {
+        $stmt = $this->db->prepare("
+            UPDATE GAME_EVENTS
+            SET IsActive = FALSE, ExpiresAt = NULL
+            WHERE IsActive = TRUE
+            AND ExpiresAt IS NOT NULL
+            AND ExpiresAt <= NOW()
+        ");
+    $stmt->execute();
+    }
 
 }
 

@@ -21,6 +21,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 $templateParams["events"] = $dbh->getAllEvents();
 
+$dbh->deactivateExpiredActiveEvent();
+
 $templateParams["titolo"] = "Gestisci Eventi";
 $templateParams["nome"] = "contenutoAdminEvents.php";
 

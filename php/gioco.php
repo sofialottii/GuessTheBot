@@ -4,6 +4,8 @@ require_once("bootstrap.php");
 
 session_start();
 
+$dbh->deactivateExpiredActiveEvent();
+
 $activeEvent = $dbh->getActiveEvent();
 
 /**

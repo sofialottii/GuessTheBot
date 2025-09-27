@@ -6,6 +6,27 @@ h5, ul,main {
     padding: 0;
 }
 
+/* COLORS */
+
+:root {
+    --colore-primario: #E67E22;
+    --colore-secondario: #34495E;
+    --colore-successo: #28a745;
+    --colore-errore: #dc3545;
+    --colore-testo: #212529;
+    --colore-testo-opposto: #ffffff;
+    --colore-header: #ffffff;
+    --colore-footer: #343a40;
+    --colore-sfondo: #f8f9fa;
+    --colore-contenitore: #ffffff;
+    --colore-bottoni: #E67E22;
+    --colore-bottoni-hover: #d35400;
+    --colore-bottoni-attivo: #c0392b;
+
+}
+
+
+
 html, body {
     height: 100%;
     margin: 0;
@@ -16,14 +37,20 @@ body {
     min-height: 100%;
     display: grid;
     grid-template-rows: auto 1fr auto; /*forzo il footer in fondo*/
+    background-color: var(--colore-sfondo) !important;
 }
 
 
 body > footer {
-    background-color: rgb(54, 54, 54);
-    color: #fff;
+    background-color: var(--colore-footer);
+    color: var(--colore-testo-opposto);
     text-align: center;
     padding: 20px 0;
+}
+
+body > header {
+    background-color: var(--colore-header);
+    color: var(--colore-testo-opposto);
 }
 
 body > header a img {
@@ -40,9 +67,13 @@ a[href="aggiungiInfografica.php"] {
     margin-right: 8px;
 }
 
+main > div > div {
+    background-color: var(--colore-contenitore) !important;
+}
+
 button, li input[type="submit"] {
-    background-color: #E67E22;
-    color: #ffffff;
+    background-color: var(--colore-bottoni);
+    color: var(--colore-testo-opposto);
     padding: 12px 20px;
     font-size: 1.1rem;
     font-weight: bold;
@@ -53,7 +84,7 @@ button, li input[type="submit"] {
 }
 
 button:hover, li input[type="submit"]:hover, .bottone:hover {
-    background-color: #d35400;
+    background-color: var(--colore-bottoni-hover);
 }
 
 button:active, li input[type="submit"]:active, .bottone:active {
@@ -65,8 +96,8 @@ button:active, li input[type="submit"]:active, .bottone:active {
     width: 50%;
     margin: 20px auto;
     text-decoration: none;
-    background-color: #E67E22;
-    color: #ffffff;
+    background-color: var(--colore-bottoni);
+    color: var(--colore-testo-opposto);
     padding: 5px 15px;
     font-size: 1.1rem;
     font-weight: bold;
@@ -80,7 +111,7 @@ button:active, li input[type="submit"]:active, .bottone:active {
     border: 2px solid rgba(0, 0, 0, 0.625);
     border-radius: 5px;
     padding: 20px 5% !important;
-    background-color: white;
+    background-color: var(--colore-testo-opposto);
 }
 
 @media (min-width: 768px) {
@@ -139,7 +170,7 @@ button:active, li input[type="submit"]:active, .bottone:active {
     min-width: 180px;
     max-width: 320px;
     margin: 18px auto;
-    background-color: #d35400;
+    background-color: var(--colore-bottoni);
     color: #fff;
     border: none;
     padding: 14px 0;
@@ -152,13 +183,13 @@ button:active, li input[type="submit"]:active, .bottone:active {
 }
 
 .choice-btn:hover {
-    background-color: #e67e22;
+    background-color: var(--colore-bottoni-hover);
     box-shadow: 0 6px 20px rgba(52, 152, 219, 0.25), 0 4px 12px rgba(230, 126, 34, 0.15);
     transform: translateY(-2px);
 }
 
 .choice-btn:active {
-    background-color: #c0392b;
+    background-color: var(--colore-bottoni-attivo);
     box-shadow: 0 2px 8px rgba(52, 152, 219, 0.10), 0 1px 4px rgba(230, 126, 34, 0.05);
     transform: translateY(0);
 }
