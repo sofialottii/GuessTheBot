@@ -40,26 +40,25 @@ document.addEventListener('DOMContentLoaded', function () {
             infographicItems[i].style.display = 'block';
         }
 
-        prevPageBtn.parentElement.classList.toggle('disabled', pageNumber === 1);
-        nextPageBtn.parentElement.classList.toggle('disabled', pageNumber === totalPages);
-
         paginationNav.style.display = (totalPages > 1) ? 'flex' : 'none';
     }
 
     prevPageBtn.addEventListener('click', function (e) {
         e.preventDefault();
-        if (currentPage > 1) {
-            currentPage--;
-            showPage(currentPage);
+        currentPage--;
+        if (currentPage < 1) {
+            currentPage = totalPages;
         }
+        showPage(currentPage);
     });
 
     nextPageBtn.addEventListener('click', function (e) {
         e.preventDefault();
-        if (currentPage < totalPages) {
-            currentPage++;
-            showPage(currentPage);
+        currentPage++;
+        if (currentPage > totalPages) {
+            currentPage = 1;
         }
+        showPage(currentPage);
     });
 
     showPage(1);
