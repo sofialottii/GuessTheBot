@@ -335,6 +335,14 @@ class DatabaseHelper{
     $stmt->execute();
     }
 
+    public function updateEventDetails($gameID, $eventName, $expiresAt) {
+    $expiresAt = !empty($expiresAt) ? $expiresAt : null;
+
+    $stmt = $this->db->prepare("UPDATE GAME_EVENTS SET EventName = ?, ExpiresAt = ? WHERE GameID = ?");
+    $stmt->bind_param("ssi", $eventName, $expiresAt, $gameID);
+    return $stmt->execute();
+}
+
 }
 
 ?>

@@ -1,22 +1,22 @@
 <div class="col-10 col-md-11 col-lg mb-4 card shadow-sm border-0">
     <div class="card-body p-4 p-md-5 text-center row">
 
-        <div class="card shadow-sm border-0 mb-4">
-                <div class="card-header bg-light d-flex justify-content-between align-items-center">
-                    <h1 class="h3 mb-0">Dettaglio: <?php echo htmlspecialchars($templateParams["Event"]["EventName"]); ?></h1>
-                    <a href="adminEvents.php" class="btn btn-secondary btn-sm">Torna alla Lista</a>
-                </div>
-                <div class="card-body">
-                    <dl class="row mb-0">
-                        <dt class="col-sm-3">Stato</dt>
-                        <dd class="col-sm-9"><?php echo $templateParams["Event"]["IsActive"] ? '<span class="badge bg-success">Attivo</span>' : '<span class="badge bg-secondary">Inattivo</span>'; ?></dd>
-                        <dt class="col-sm-3">Modalità</dt>
-                        <dd class="col-sm-9"><?php echo ucfirst($templateParams["Event"]["Mode"]); ?></dd>
-                        <dt class="col-sm-3">Scadenza</dt>
-                        <dd class="col-sm-9"><?php echo $templateParams["Event"]["ExpiresAt"] ? date("d/m/Y H:i", strtotime($templateParams["Event"]["ExpiresAt"])) : 'Nessuna'; ?></dd>
-                    </dl>
-                </div>
+        <div class="card shadow-sm border-0 mb-4 p-0">
+            <div class="card-header bg-light d-flex justify-content-between align-items-center">
+                <h1 class="h3 mb-0">Dettaglio: <?php echo htmlspecialchars($templateParams["Event"]["EventName"]); ?></h1>
+                <a href="adminEvents.php" class="btn btn-secondary btn-sm">Torna alla Lista</a>
             </div>
+            <div class="card-body">
+                <dl class="row mb-0">
+                    <dt class="col-sm-3">Stato</dt>
+                    <dd class="col-sm-9"><?php echo $templateParams["Event"]["IsActive"] ? '<span class="badge bg-success">Attivo</span>' : '<span class="badge bg-secondary">Inattivo</span>'; ?></dd>
+                    <dt class="col-sm-3">Modalità</dt>
+                    <dd class="col-sm-9"><?php echo ucfirst($templateParams["Event"]["Mode"]); ?></dd>
+                    <dt class="col-sm-3">Scadenza</dt>
+                    <dd class="col-sm-9"><?php echo $templateParams["Event"]["ExpiresAt"] ? date("d/m/Y H:i", strtotime($templateParams["Event"]["ExpiresAt"])) : 'Nessuna'; ?></dd>
+                </dl>
+            </div>
+        </div>
 
             <?php if ($templateParams["Event"]["Mode"] == 'fixed'): ?>
                 <div class="card shadow-sm border-0 mb-4">
