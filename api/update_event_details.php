@@ -3,7 +3,7 @@ require_once("../php/bootstrap.php");
 session_start();
 header('Content-Type: application/json');
 
-if (!isset($_SESSION["AdminID"]) || !isset($_POST['gameID'])) {
+if (!isset($_POST['gameID'])) {
     echo json_encode(['success' => false, 'error' => 'Accesso non autorizzato o dati mancanti.']);
     exit;
 }

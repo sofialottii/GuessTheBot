@@ -3,18 +3,51 @@
 
         <div class="card shadow-sm border-0 mb-4 p-0">
             <div class="card-header bg-light d-flex justify-content-between align-items-center">
-                <h1 class="h3 mb-0">Dettaglio: <?php echo htmlspecialchars($templateParams["Event"]["EventName"]); ?></h1>
-                <a href="adminEvents.php" class="btn btn-secondary btn-sm">Torna alla Lista</a>
+                <div id="event-title-container">
+                    <h1 class="h3 mb-0">Dettaglio: <?php echo $templateParams["Event"]["EventName"]; ?></h1>
+                </div>
+                <div>
+                    <button id="edit-btn" class="btn btn-outline-secondary btn-sm me-2">
+                        Modifica
+                    </button>
+                    <a href="adminEvents.php" class="btn btn-secondary btn-sm">Torna alla Lista</a>
+                </div>
+                
+        
             </div>
             <div class="card-body">
-                <dl class="row mb-0">
-                    <dt class="col-sm-3">Stato</dt>
-                    <dd class="col-sm-9"><?php echo $templateParams["Event"]["IsActive"] ? '<span class="badge bg-success">Attivo</span>' : '<span class="badge bg-secondary">Inattivo</span>'; ?></dd>
-                    <dt class="col-sm-3">Modalità</dt>
-                    <dd class="col-sm-9"><?php echo ucfirst($templateParams["Event"]["Mode"]); ?></dd>
-                    <dt class="col-sm-3">Scadenza</dt>
-                    <dd class="col-sm-9"><?php echo $templateParams["Event"]["ExpiresAt"] ? date("d/m/Y H:i", strtotime($templateParams["Event"]["ExpiresAt"])) : 'Nessuna'; ?></dd>
-                </dl>
+                <div id="view-mode">
+                    <dl class="row mb-0">
+                        <dt class="col-sm-3">Stato</dt>
+                        <dd class="col-sm-9"><?php echo $templateParams["Event"]["IsActive"] ? '<span class="badge bg-success">Attivo</span>' : '<span class="badge bg-secondary">Inattivo</span>'; ?></dd>
+                        <dt class="col-sm-3">Modalità</dt>
+                        <dd class="col-sm-9"><?php echo ucfirst($templateParams["Event"]["Mode"]); ?></dd>
+                        <dt class="col-sm-3">Scadenza</dt>
+                        <dd class="col-sm-9" id="event-date-container"><?php echo $templateParams["Event"]["ExpiresAt"] ? date("d/m/Y H:i", strtotime($templateParams["Event"]["ExpiresAt"])) : 'Nessuna'; ?></dd>
+                    </dl>
+                </div>
+            
+                <!--per quando si vuole modificare titolo e scadenza: -->
+                <div id="edit-mode" style="display: none;">
+                    <form id="edit-event-form">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="eventName" class="form-label">Nome Evento</label>
+                                <input type="text" class="form-control" id="eventName" name="eventName" value="<?php echo $templateParams["Event"]["EventName"]; ?>">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="expiresAt" class="form-label">Data di Scadenza</label>
+                                <input type="datetime-local" class="form-control" id="expiresAt" name="expiresAt" value="<?php echo !empty($templateParams["Event"]["ExpiresAt"]) ? date("Y-m-d\TH:i", strtotime($templateParams["Event"]["ExpiresAt"])) : ''; ?>">
+                            </div>
+                        </div>
+                        <div class="text-end">
+                            <button type="button" id="cancel-edit-btn" class="btn btn-secondary">Annulla</button>
+                            <button type="button" id="save-edit-btn" class="btn btn-primary">Salva Modifiche</button>
+                        </div>
+                    </form>
+                </div>
+                <!-- fine modifica -->
+                <script src="../assets/js/dettaglioEvento.js"></script>
             </div>
         </div>
 
