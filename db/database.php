@@ -364,16 +364,73 @@ class DatabaseHelper{
             AND ExpiresAt IS NOT NULL
             AND ExpiresAt <= NOW()
         ");
-    $stmt->execute();
+        $stmt->execute();
     }
 
     public function updateEventDetails($gameID, $eventName, $expiresAt) {
-    $expiresAt = !empty($expiresAt) ? $expiresAt : null;
+        $expiresAt = !empty($expiresAt) ? $expiresAt : null;
 
-    $stmt = $this->db->prepare("UPDATE GAME_EVENTS SET EventName = ?, ExpiresAt = ? WHERE GameID = ?");
-    $stmt->bind_param("ssi", $eventName, $expiresAt, $gameID);
-    return $stmt->execute();
+        $stmt = $this->db->prepare("UPDATE GAME_EVENTS SET EventName = ?, ExpiresAt = ? WHERE GameID = ?");
+        $stmt->bind_param("ssi", $eventName, $expiresAt, $gameID);
+        return $stmt->execute();
+    }
+
+
+    /* CSV E DATI UTENTE */
+
+    
+    //riepilogo di tutti gli utenti con il loro punteggio totale e round giocati
+    public function getUsersSummary() {
+        $stmt = $this->db->prepare("
+            SELECT
+                u.UserID, u.Name,
+                COUNT(DISTINCT a.GameID) as EventsPlayed,
+                SUM(CASE WHEN a.IsCorrect = 'Y' THEN 1 ELSE 0 END) as TotalScore,
+                COUNT(a.AnswerID) as TotalAnswers
+            FROM users u
+            LEFT JOIN answers a ON u.UserID = a.UserID
+            GROUP BY u.UserID, u.Name
+            ORDER BY TotalScore DESC, u.Name ASC
+        ");
+        $stmt->execute();
+        return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+    }
+
+    //TUTTE LE RISPOSTE PER L'ESPORTAZIONE
+    public function getAllAnswersForExport() {
+        $stmt = $this->db->prepare("
+            SELECT
+                a.AnswerID, u.Name as UserName, e.EventName, i.Title as InfographicTitle,
+                a.TextShown, a.UserChoice, a.IsCorrect, a.Motivation, a.Advice, a.AnsweredAt
+            FROM answers a
+            JOIN users u ON a.UserID = u.UserID
+            JOIN infographics i ON a.InfographicID = i.InfographicID
+            LEFT JOIN GAME_EVENTS e ON a.GameID = e.GameID
+            ORDER BY a.AnswerID ASC
+        ");
+        $stmt->execute();
+        return $stmt->get_result(); //restituisco il risultato per lo streaming
 }
+
+    //SINGOLO UTENTE, esportazione
+    public function getUserAnswersForExport($userId) {
+        $stmt = $this->db->prepare("
+            SELECT
+                a.AnswerID, u.Name as UserName, e.name as EventName, i.Title as InfographicTitle,
+                a.TextShown, a.UserChoice, a.IsCorrect, a.Motivation, a.Advice, a.AnswerTimestamp
+            FROM answers a
+            JOIN users u ON a.UserID = u.UserID
+            JOIN infographics i ON a.InfographicID = i.InfographicID
+            LEFT JOIN GAME_EVENTS e ON a.GameID = e.GameID
+            WHERE a.UserID = ?
+            ORDER BY a.AnswerID ASC
+        ");
+        $stmt->bind_param("i", $userId);
+        $stmt->execute();
+        return $stmt->get_result(); //risultato per lo streaming
+    }
+
+
 
 }
 
