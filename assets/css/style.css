@@ -297,6 +297,23 @@ button:active, li input[type="submit"]:active, .bottone:active {
 }
 
 
+.btn-outline-feedback {
+    color: var(--colore-bottoni);
+    border: 1px solid var(--colore-bottoni);
+    padding: 8px 16px;
+    font-size: 15px;
+    font-weight: bold;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+.btn-outline-feedback:hover {
+    background-color: var(--colore-bottoni);
+    color: var(--colore-testo-opposto);
+    text-decoration: none;
+}
+
 @media (max-width: 768px) {
     .flip-container {
         width: 35vw;

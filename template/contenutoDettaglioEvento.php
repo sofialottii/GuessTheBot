@@ -4,7 +4,7 @@
         <div class="card shadow-sm border-0 mb-4 p-0">
             <div class="card-header bg-light d-flex justify-content-between align-items-center">
                 <div id="event-title-container">
-                    <h1 class="h3 mb-0">Dettaglio: <?php echo $templateParams["Event"]["EventName"]; ?></h1>
+                    <h1 class="h3 mb-0">Titolo: <?php echo $templateParams["Event"]["EventName"]; ?></h1>
                 </div>
                 <div>
                     <button id="edit-btn" class="btn btn-outline-secondary btn-sm me-2">
@@ -51,69 +51,86 @@
             </div>
         </div>
 
-            <?php if ($templateParams["Event"]["Mode"] == 'fixed'): ?>
-                <div class="card shadow-sm border-0 mb-4">
-                    <div class="card-header"><h2 class="h5 mb-0">Infografiche Impostate per l'Evento</h2></div>
-                    <div class="card-body">
-                        <div class="row">
-                            <?php foreach($templateParams["FixedInfographics"] as $infographic): ?>
-                                <div class="col-6 col-md-4 col-lg-2 text-center mb-2 div-fit">
-                                    <img src="../<?php echo htmlspecialchars($infographic['ImagePath']); ?>" class="img-fit rounded" alt="<?php echo htmlspecialchars($infographic['Title']); ?>" title="<?php echo htmlspecialchars($infographic['Title']); ?>">
-                                </div>
-                            <?php endforeach; ?>
-                        </div>
+        <!--solo per i fixed vengono mostrate le infografiche impostate-->
+        <?php if ($templateParams["Event"]["Mode"] == 'fixed'): ?>
+            <div class="card shadow-sm border-0 mb-4 p-0">
+                <div class="card-header"><h2 class="h5 mb-0">Infografiche Impostate per l'Evento</h2></div>
+                <div class="card-body">
+                    <div class="row">
+                        <?php foreach($templateParams["FixedInfographics"] as $infographic): ?>
+                            <div class="col-6 col-md-4 col-lg-2 text-center mb-2 card-check div-fit">
+                                <a href="dettaglioInfografica.php?IDInfographic=<?php echo $infographic["InfographicID"]; ?>&IDGame=<?php echo $templateParams["Event"]["GameID"]; ?>" >
+                                    <img src="../<?php echo $infographic['ImagePath']; ?>" class="img-fit rounded" alt="<?php echo $infographic['Title']; ?>" title="<?php echo $infographic['Title']; ?>">
+                                </a>
+                            </div>
+                        <?php endforeach; ?>
                     </div>
                 </div>
-            <?php endif; ?>
-
-            <div class="card shadow-sm border-0">
-                <div class="card-header"><h2 class="h5 mb-0">Statistiche per Infografica</h2></div>
-                <div class="card-body">
-                    <?php if(empty($templateParams["InfographicStats"])): ?>
-                        <p class="text-muted">Nessuna partita è stata ancora giocata in questo evento.</p>
-                    <?php else: ?>
-                        <div class="accordion" id="statsAccordion">
-                            <?php foreach($templateParams["InfographicStats"] as $stat): ?>
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header" id="heading_<?php echo $stat['InfographicID']; ?>">
-                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse_<?php echo $stat['InfographicID']; ?>">
-                                            <img src="../<?php echo htmlspecialchars($stat['ImagePath']); ?>" class="me-3 rounded" style="width:40px; height:40px; object-fit:cover;">
-                                            <strong class="me-auto"><?php echo htmlspecialchars($stat['Title']); ?></strong>
-                                            <span class="badge bg-primary rounded-pill">Successo: <?php echo ($stat['TotalAnswers'] > 0) ? number_format(($stat['CorrectAnswers'] / $stat['TotalAnswers']) * 100, 1) : '0'; ?>%</span>
-                                        </button>
-                                    </h2>
-                                    <div id="collapse_<?php echo $stat['InfographicID']; ?>" class="accordion-collapse collapse" data-bs-parent="#statsAccordion">
-                                        <div class="accordion-body">
-                                            <h3 class="h6">Feedback degli Utenti:</h3>
-                                            <?php 
-                                                // Carichiamo i commenti solo per questa infografica
-                                                $feedbacks = $dbh->getTextualFeedbackForInfographicInEvent($gameID, $stat['InfographicID']);
-                                            ?>
-                                            <?php if(empty($feedbacks)): ?>
-                                                <p class="text-muted small">Nessun feedback testuale per questa infografica.</p>
-                                            <?php else: ?>
-                                                <ul class="list-group">
-                                                    <?php foreach($feedbacks as $feedback): ?>
-                                                        <li class="list-group-item">
-                                                            ...
-                                                        </li>
-                                                    <?php endforeach; ?>
-                                                </ul>
-                                            <?php endif; ?>
-                                        </div>
-                                    </div>
-                                </div>
-                            <?php endforeach; ?>
-                        </div>
-                    <?php endif; ?>
-                </div>
             </div>
+        <?php endif; ?>
 
-            <form action="#" method="POST" class="d-inline-block">
-                <button type="submit" name="deleteEvent" class="btn btn-sm btn-outline-danger" onclick="return confirm('Sei sicuro di voler eliminare questo evento? L\'azione è irreversibile e le risposte associate verranno rese anonime.');">
-                    Elimina
-                </button>
-            </form>
+        <div class="card shadow-sm border-0 p-0">
+            <div class="card-header"><h2 class="h5 mb-0">Statistiche per Infografica</h2></div>
+            <div class="card-body">
+                <?php if(empty($templateParams["InfographicStats"])): ?>
+                    <p class="text-muted">Nessuna partita è stata ancora giocata in questo evento.</p>
+                <?php else: ?>
+                    <div class="table-responsive">
+                        <table class="table table-hover align-middle">
+                            <thead>
+                                <tr>
+                                    <th scope="col" style="width: 8%;">Immagine</th>
+                                    <th scope="col" class="text-center d-none d-lg-table-cell">Titolo</th>
+                                    <th scope="col" class="text-center">Giocate</th>
+                                    <th scope="col" class="text-center">Indovinate</th>
+                                    <th scope="col" class="text-center d-none d-sm-table-cell">Successo</th>
+                                    <th scope="col" class="text-end">Feedback</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach($templateParams["InfographicStats"] as $stat): ?>
+                                <tr>
+                                    <td>
+                                        <img src="../<?php echo $stat['ImagePath']; ?>" class="img-fluid rounded" alt="<?php echo $stat['Title']; ?>">
+                                    </td>
+                                    <td class="fw-bold d-none d-lg-table-cell">
+                                        <?php echo $stat['Title']; ?>
+                                    </td>
+                                    <td class="text-center fw-bold">
+                                        <?php echo $stat['TotalAnswers']; ?>
+                                    </td>
+                                    <td class="text-center fw-bold">
+                                        <?php echo $stat['CorrectAnswers']; ?>
+                                    </td>
+                                    <td class="text-center d-none d-sm-table-cell">
+                                        <?php 
+                                            $successRate = ($stat['TotalAnswers'] > 0) ? $stat['AccuracyPercentage'] : 0;
+                                        ?>
+                                        <div class="progress" style="height: 20px;">
+                                            <div class="progress-bar" role="progressbar" style="width: <?php echo $successRate; ?>%; background-color: #E67E22;" aria-valuenow="<?php echo $successRate; ?>" aria-valuemin="0" aria-valuemax="100">
+                                                <?php echo number_format($successRate, 1); ?>%
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="text-end">
+                                        <a href="dettaglioInfografica.php?IDInfographic=<?php echo $stat['InfographicID']; ?>&IDGame=<?php echo $templateParams['Event']['GameID']; ?>" class="btn-outline-feedback">
+                                            Vedi Feedback
+                                        </a>
+                                    </td>
+                                </tr>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                    </div>
+                <?php endif; ?>
+            </div>
+        </div>
+
+        <form action="#" method="POST">
+            <button type="submit" name="deleteEvent" class="btn btn-danger mt-4" onclick="return confirm('Sei sicuro di voler eliminare questo evento? L\'azione è irreversibile e le risposte associate verranno rese anonime.');">
+                Elimina evento
+            </button>
+        </form>
 
     </div>
 </div>

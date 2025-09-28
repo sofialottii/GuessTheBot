@@ -304,8 +304,8 @@ class DatabaseHelper{
         $stmt = $this->db->prepare("
             SELECT u.Name, a.*
             FROM answers a
-            JOIN users u ON a.UserID = u.id
-            WHERE a.event_id = ? AND a.InfographicID = ? AND (a.Motivation IS NOT NULL OR a.Advice IS NOT NULL)
+            JOIN users u ON a.UserID = u.UserID
+            WHERE a.GameID = ? AND a.InfographicID = ? AND (a.Motivation IS NOT NULL OR a.Advice IS NOT NULL)
         ");
         $stmt->bind_param("ii", $eventId, $infographicId);
         $stmt->execute();
