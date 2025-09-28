@@ -181,7 +181,7 @@ class DatabaseHelper{
         return $result->fetch_assoc();
     }
 
-    public function getStatisticsInfographicById($idInfographic){
+    public function getStatisticsInfographicById($idInfographic, $eventId = null){ 
         $stmt = $this->db->prepare("SELECT i.*,
                                         COUNT(a.AnswerID) AS TotalAnswers,
                                         SUM(CASE WHEN a.IsCorrect = 'Y' THEN 1 ELSE 0 END) AS CorrectAnswers,
@@ -197,7 +197,7 @@ class DatabaseHelper{
         return $result->fetch_assoc();
     }
 
-    public function getAllAnswersById($idInfographic){
+    public function getAllAnswersById($idInfographic, $eventId = null){
         $stmt = $this->db->prepare("SELECT a.*, u.Name
                                             FROM answers a
                                             LEFT JOIN users u ON a.UserID = u.UserID
@@ -208,6 +208,21 @@ class DatabaseHelper{
         $result = $stmt->get_result();
         return $result->fetch_all(MYSQLI_ASSOC);
     }
+
+    public function getEventsForInfographic($infographicId) {
+        $stmt = $this->db->prepare("
+            SELECT DISTINCT e.GameID, e.EventName 
+            FROM GAME_EVENTS e
+            JOIN answers a ON e.GameID = a.GameID
+            WHERE a.InfographicID = ?
+            ORDER BY e.CreatedAt DESC
+        ");
+        $stmt->bind_param("i", $infographicId);
+        $stmt->execute();
+        return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+    }
+
+
 
     public function disableInfographic($idInfographic){
         $stmt = $this->db->prepare("UPDATE infographics SET IsActive = FALSE WHERE InfographicID = ?");

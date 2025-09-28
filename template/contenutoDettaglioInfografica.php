@@ -43,6 +43,25 @@
                 <!-- statistiche -->
 
                 <div id="content-statistiche" class="tab-content" style="display: none;">
+
+                    <!--menu a tendina-->
+                     <form action="dettaglioInfografica.php" method="GET" class="row g-3 align-items-center mb-4">
+                        <input type="hidden" name="IDInfographic" value="<?php echo $templateParams["infografica"]["InfographicID"]; ?>">
+                        <div class="col-auto">
+                            <label for="eventFilter" class="col-form-label">Filtra statistiche per evento:</label>
+                        </div>
+                        <div class="col-auto">
+                            <select class="form-select" id="eventFilter" name="IDGame">
+                                <option value="">Mostra tutto</option>
+                                <?php foreach($templateParams["eventiFiltro"] as $evento): ?>
+                                    <option value="<?php echo $evento['GameID']; ?>" <?php if($templateParams["filtroAttuale"] == $evento['GameID']) echo 'selected'; ?>>
+                                        <?php echo htmlspecialchars($evento['EventName']); ?>
+                                    </option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                    </form>
+
                     <h3 class="h5 mt-4">Statistiche di Gioco</h3>            
                     <ul class="list-group mb-4">
                         <li class="list-group-item d-flex justify-content-between align-items-center">
