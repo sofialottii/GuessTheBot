@@ -83,15 +83,3 @@
 
     </body>
 </html>
-
-<!--
-
-da sistemare:
-
--in dettaglioEvento, sistemare completamente
--in dettaglioEvento, quando nelle statistiche si toccherà su un'immagine, dovrà portare a dettaglioInfografica a cui bisogna passare id della sessione
-
--in adminAnswers, valutare la possibilità di filtrare per evento
--stessa cosa per adminUsers
-
--->
