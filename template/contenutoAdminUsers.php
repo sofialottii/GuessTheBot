@@ -12,6 +12,7 @@
             <table class="table table-striped">
                 <thead>
                     <tr>
+                        <th>Download CSV</th>
                         <th>Nome Utente</th>
                         <th>Punteggio</th>
                         <th>Azioni</th>
@@ -19,16 +20,22 @@
                 </thead>
                 <tbody>
                     <?php foreach ($templateParams["users"] as $user): ?>
-                        <tr>
-                            <td><?php echo $user["Name"]; ?></td>
-                            <td><?php echo $user["score"]; ?></td>
-                            <td>
-                                <form method="POST" action="adminUsers.php">
-                                    <input type="hidden" name="deleteUserID" value="<?php echo $user['UserID']; ?>">
-                                    <button type="submit" name="delete" class="btn btn-danger btn-sm">Elimina</button>
-                                </form>
-                            </td>
-                        </tr>
+                        <form method="GET" action="../api/export_csv.php">
+                            <input type="hidden" name="userID" value="<?php echo $user['UserID']; ?>" />
+                            <tr>
+                                <td>
+                                    <button type="submit" class="btn btn-light btn-sm"><img src="../assets/icons/downloadButton.png" alt="download csv" /></button>
+                                </td>
+                                <td><?php echo $user["Name"]; ?></td>
+                                <td><?php echo $user["score"]; ?></td>
+                                <td>
+                                    <form method="POST" action="adminUsers.php">
+                                        <input type="hidden" name="deleteUserID" value="<?php echo $user['UserID']; ?>">
+                                        <button type="submit" name="delete" class="btn btn-danger btn-sm">Elimina</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        </form>
                     <?php endforeach; ?>
                 </tbody>
         

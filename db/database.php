@@ -400,7 +400,7 @@ class DatabaseHelper{
     public function getAllAnswersForExport() {
         $stmt = $this->db->prepare("
             SELECT
-                a.AnswerID, u.Name as UserName, e.EventName, i.Title as InfographicTitle,
+                u.UserID, u.Name as UserName, e.EventName, i.Title as InfographicTitle,
                 a.TextShown, a.UserChoice, a.IsCorrect, a.Motivation, a.Advice, a.AnsweredAt
             FROM answers a
             JOIN users u ON a.UserID = u.UserID
@@ -416,8 +416,8 @@ class DatabaseHelper{
     public function getUserAnswersForExport($userId) {
         $stmt = $this->db->prepare("
             SELECT
-                a.AnswerID, u.Name as UserName, e.name as EventName, i.Title as InfographicTitle,
-                a.TextShown, a.UserChoice, a.IsCorrect, a.Motivation, a.Advice, a.AnswerTimestamp
+                u.UserID, u.Name as UserName, e.EventName, i.Title as InfographicTitle,
+                a.TextShown, a.UserChoice, a.IsCorrect, a.Motivation, a.Advice, a.AnsweredAt
             FROM answers a
             JOIN users u ON a.UserID = u.UserID
             JOIN infographics i ON a.InfographicID = i.InfographicID
@@ -426,6 +426,24 @@ class DatabaseHelper{
             ORDER BY a.AnswerID ASC
         ");
         $stmt->bind_param("i", $userId);
+        $stmt->execute();
+        return $stmt->get_result(); //risultato per lo streaming
+    }
+
+    //SINGOLA SESSIONE esportazione
+    public function getSessionAnswersForExport($sessionId) {
+        $stmt = $this->db->prepare("
+            SELECT
+                u.UserID, u.Name as UserName, e.EventName, i.Title as InfographicTitle,
+                a.TextShown, a.UserChoice, a.IsCorrect, a.Motivation, a.Advice, a.AnsweredAt
+            FROM answers a
+            JOIN users u ON a.UserID = u.UserID
+            JOIN infographics i ON a.InfographicID = i.InfographicID
+            LEFT JOIN GAME_EVENTS e ON a.GameID = e.GameID
+            WHERE a.SessionID = ?
+            ORDER BY a.AnswerID ASC
+        ");
+        $stmt->bind_param("s", $sessionId);
         $stmt->execute();
         return $stmt->get_result(); //risultato per lo streaming
     }

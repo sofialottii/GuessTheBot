@@ -4,7 +4,7 @@ session_start();
 
 
 //esportare tutti i dati o solo quelli di un utente
-$userIdToExport = isset($_GET['userID']) ? (int)$_GET['userID'] : null;
+$userIdToExport = isset($_GET['userID']) ? $_GET['userID'] : null;
 
 
 $filename = "risultati_";
@@ -19,7 +19,7 @@ header('Content-Disposition: attachment; filename="' . $filename . '"');
 $output = fopen('php://output', 'w');
 
 
-fputcsv($output, ['ID Risposta', 'Giocatore', 'Evento', 'Infografica', 'Testo Mostrato', 'Scelta Utente', 'Corretta', 'Motivazione', 'Consiglio', 'Data']);
+fputcsv($output, ['ID Utente', 'Giocatore', 'Evento', 'Infografica', 'Testo Mostrato', 'Scelta Utente', 'È Corretta', 'Motivazione', 'Consiglio', 'Data']);
 
 
 $result = ($userIdToExport) ? $dbh->getUserAnswersForExport($userIdToExport) : $dbh->getAllAnswersForExport();

@@ -37,7 +37,7 @@
                     <a href="aggiungiInfografica.php">
                         <article class="click temporaneo border border-0">
                             <section class="text-center my-4">
-                                <img src="../assets/images/aggiungi.png" alt="aggiungi" />
+                                <img src="../assets/icons/addButton.png" alt="aggiungi" />
                             </section>
                             <footer>
                                 <p class="fs-3 fw-bold text-center text-dark">Nuova infografica</p>
