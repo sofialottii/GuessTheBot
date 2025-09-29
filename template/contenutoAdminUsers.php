@@ -5,6 +5,9 @@
         <?php if (empty($templateParams["users"])): ?>
             <p class="alert alert-warning">Nessun utente registrato.</p>
         <?php else: ?>
+        <a href="../api/export_csv.php" class="bottone col-2">
+            Esporta Tutto (CSV)
+        </a>
         <div class="table-responsive">
             <table class="table table-striped">
                 <thead>

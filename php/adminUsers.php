@@ -20,6 +20,8 @@ if (isset($_POST["home"])) {
     exit();
 }
 
+$templateParams["usersSummary"] = $dbh->getUsersSummary();
+
 $templateParams["titolo"] = "Gestisci Utenti";
 $templateParams["nome"] = "contenutoAdminUsers.php";
 
