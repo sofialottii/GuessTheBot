@@ -1,6 +1,6 @@
 <div class="col-10 col-md-11 col-lg mb-4">
     <div class="text-center mb-4">
-        <h1>GUESS THE BOT</h1>
+        <h1 class="fw-bold p-3 display-5">GUESS THE BOT</h1>
         <div class="row">
             <div class="col-6">
                 <span class="badge bg-primary fs-6">Round <span id="current-round"><?php echo $_SESSION["currentRound"] >= 10 ? "10" : $_SESSION["currentRound"]; ?></span>/10</span>

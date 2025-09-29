@@ -4,7 +4,16 @@ require_once("bootstrap.php");
 
 session_start();
 
-$templateParams["users"] = $dbh->getAllUsersWithScores();
+if (isset($_GET["IDGame"]) && $_GET["IDGame"] > 0) {
+    
+    $gameId = $_GET["IDGame"];
+    if ($gameId > 0) {
+        $templateParams["users"] = $dbh->getAllUsersWithScoresByEvent($gameId);
+    }
+} else {
+    $templateParams["users"] = $dbh->getAllUsersWithScores();
+}
+
 
 
 
@@ -20,6 +29,9 @@ if (isset($_POST["home"])) {
     exit();
 }
 
+
+$templateParams["filtroAttuale"] = isset($_GET["IDGame"]) ? $_GET["IDGame"] : null;
+$templateParams["eventiFiltro"] = $dbh->getAllEvents();
 $templateParams["usersSummary"] = $dbh->getUsersSummary();
 
 $templateParams["titolo"] = "Gestisci Utenti";

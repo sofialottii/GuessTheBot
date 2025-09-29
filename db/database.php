@@ -123,6 +123,18 @@ class DatabaseHelper{
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
+    public function getAllUsersWithScoresByEvent($eventId){
+        $stmt = $this->db->prepare("SELECT u.UserID, u.Name, COUNT(a.IsCorrect) AS score
+                                    FROM users u
+                                    JOIN answers a ON u.UserID = a.UserID AND a.IsCorrect = 'y' AND a.GameID = ?
+                                    GROUP BY u.UserID, u.Name
+                                    ORDER BY score DESC");
+        $stmt->bind_param("i", $eventId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
     public function getAllAnswers(){
         $stmt = $this->db->prepare("SELECT a.*, i.ImagePath, i.Title, u.Name
                                     FROM answers a
@@ -431,7 +443,7 @@ class DatabaseHelper{
     }
 
     //SINGOLA SESSIONE esportazione
-    public function getSessionAnswersForExport($sessionId) {
+    public function getSessionAnswersForExport($sessionId, $userId = null) {
         $stmt = $this->db->prepare("
             SELECT
                 u.UserID, u.Name as UserName, e.EventName, i.Title as InfographicTitle,
@@ -440,10 +452,10 @@ class DatabaseHelper{
             JOIN users u ON a.UserID = u.UserID
             JOIN infographics i ON a.InfographicID = i.InfographicID
             LEFT JOIN GAME_EVENTS e ON a.GameID = e.GameID
-            WHERE a.SessionID = ?
+            WHERE a.GameID = ? and a.UserID = IFNULL(?, a.UserID)
             ORDER BY a.AnswerID ASC
         ");
-        $stmt->bind_param("s", $sessionId);
+        $stmt->bind_param("si", $sessionId, $userId); 
         $stmt->execute();
         return $stmt->get_result(); //risultato per lo streaming
     }

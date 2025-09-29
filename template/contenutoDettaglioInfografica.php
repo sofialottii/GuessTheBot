@@ -45,7 +45,7 @@
                 <div id="content-statistiche" class="tab-content" style="display: none;">
 
                     <!--menu a tendina-->
-                     <form action="dettaglioInfografica.php" method="GET" class="row g-3 align-items-center mb-4">
+                    <form action="dettaglioInfografica.php" method="GET" class="row g-3 align-items-center mb-4">
                         <input type="hidden" name="IDInfographic" value="<?php echo $templateParams["infografica"]["InfographicID"]; ?>">
                         <div class="col-auto">
                             <label for="eventFilter" class="col-form-label">Filtra statistiche per evento:</label>
