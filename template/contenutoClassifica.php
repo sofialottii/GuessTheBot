@@ -2,7 +2,7 @@
     <div class="card-body p-4 p-md-5 row">
 
         <div class="text-center mb-4">
-            <h1 class="fw-bold text-uppercase">Classifica</h1>
+            <h1 class="fw-bold text-uppercase display-5 colore-primario">Classifica</h1>
             <p class="text-muted">Scopri i migliori giocatori di GuessTheBot!</p>
         </div>
 
@@ -11,7 +11,7 @@
         <?php else: ?>
 
         <div class="table-responsive">
-            <table class="table table-striped table-hover align-middle">
+            <table class="table table-striped table-hover align-middle" >
                 <thead class="table-dark">
                     <tr>
                         <th scope="col" class="text-center">Pos.</th>

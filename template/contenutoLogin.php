@@ -1,14 +1,14 @@
 <div class="col-10 col-md-11 col-lg-10 mb-4 card shadow-sm border-0">
     <div class="card-body p-4 p-md-5 text-center row justify-content-center">
 
-        <h1 class="mb-4">AREA RISERVATA</h1>
+        <h1 class="mb-4 fw-bold display-5">AREA RISERVATA</h1>
         <?php if(isset($templateParams["errorelogin"])): ?>
         <p class="text-danger"><?php echo $templateParams["errorelogin"]; ?></p>
         <?php endif; ?>
 
         <form action="#" method="POST" class="col-8" >
             <ul class="p-0 form list-unstyled">
-                <li>
+                <li class="mb-4">
                     <label for="username" class="form-label">Username</label>
                     <input type="text" id="username" name="username" class="form-control" autocomplete="on" />
                 </li>

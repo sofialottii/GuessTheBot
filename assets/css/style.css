@@ -67,8 +67,8 @@ a[href="aggiungiInfografica.php"] {
     margin-right: 8px;
 }
 
-main > div > div {
-    background-color: var(--colore-contenitore) !important;
+.colore-primario {
+    color: var(--colore-primario);
 }
 
 button, li input[type="submit"] {
@@ -293,7 +293,6 @@ button:active, li input[type="submit"]:active, .bottone:active {
 
 .card-body-link:hover {
     background-color: #f8f9fa;
-    /* Un grigio leggero al passaggio del mouse */
 }
 
 
