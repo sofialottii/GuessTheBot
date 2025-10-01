@@ -341,7 +341,7 @@ class DatabaseHelper{
         $stmt->bind_param("i", $eventId);
         $stmt->execute();
         return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
-}
+    }
 
     //commenti (motivazioni e consigli) per una specifica infografica in un evento
     public function getTextualFeedbackForInfographicInEvent($eventId, $infographicId) {

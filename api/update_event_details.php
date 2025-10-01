@@ -17,7 +17,7 @@ $success = $dbh->updateEventDetails($gameID, $eventName, $expiresAt);
 if ($success) {
     echo json_encode([
         'success' => true,
-        'updatedName' => htmlspecialchars($eventName),
+        'updatedName' => $eventName,
         'updatedDate' => !empty($expiresAt) ? date("d/m/Y H:i", strtotime($expiresAt)) : 'Nessuna'
     ]);
 } else {
