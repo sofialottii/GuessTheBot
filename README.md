@@ -2,9 +2,11 @@
 
 ## Descrizione del Progetto
 
-Questo progetto è sviluppato per la mia tesi di laurea e consiste in una web app interattiva il cui scopo è analizzare la capacità degli utenti di distinguere tra descrizioni testuali generate da un essere umano e quelle generate da un Large Language Model (LLM).
+Progetto sviluppato per la tesi di laurea, consiste in una web app interattiva il cui scopo è analizzare la capacità degli utenti di distinguere tra descrizioni testuali generate da un essere umano e quelle generate da un Large Language Model (LLM).
 
-L'applicazione presenta all'utente una serie di infografiche, ognuna accompagnata da una descrizione. L'utente deve quindi indovinare l'origine del testo e, facoltativamente, fornire una motivazione per la sua scelta. I risultati vengono raccolti per calcolare un punteggio e stilare una classifica dei partecipanti.
+L'applicazione presenta all'utente una serie di infografiche, ognuna accompagnata da una descrizione. L'utente deve quindi indovinare l'origine del testo e, facoltativamente, fornire una motivazione per la sua scelta o consigli per migliorare l'esperienza dell'applicazione. I risultati vengono raccolti per calcolare un punteggio e stilare una classifica dei partecipanti.
+
+È possibile accedere all'area riservata, che permette di modificare l'esperienza di gioco a 360°.
 
 ## Tecnologie Utilizzate
 
